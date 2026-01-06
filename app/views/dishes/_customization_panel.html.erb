@@ -1,0 +1,85 @@
+<%= turbo_frame_tag "customization_panel" do %>
+  <div class="customization-panel-content">
+    <div class="panel-header">
+      <h3>Customize <%= dish.name %></h3>
+      <button class="close-panel-btn" data-action="click->customization-panel#closePanel">×</button>
+    </div>
+
+    <div class="customization-list">
+      <% dish.dish_ingredients.includes(:ingredient).each do |dish_ingredient| %>
+        <div class="customization-item" 
+             data-customization-panel-target="item"
+             data-ingredient-id="<%= dish_ingredient.ingredient_id %>">
+          
+          <div class="ingredient-info">
+            <h4><%= dish_ingredient.ingredient.name %></h4>
+            <span class="default-quantity">Default: <%= dish_ingredient.default_quantity %></span>
+          </div>
+
+          <% if dish_ingredient.is_customizable %>
+            <div class="quantity-controls">
+              <button class="quantity-btn minus" 
+                      data-action="click->customization-panel#updateQuantity"
+                      data-customization-panel-ingredient-id-value="<%= dish_ingredient.ingredient_id %>"
+                      data-delta="-1">−</button>
+              <span class="quantity-display" 
+                    data-customization-panel-target="quantityDisplay"
+                    data-ingredient-id="<%= dish_ingredient.ingredient_id %>">
+                <%= dish_ingredient.default_quantity %>
+              </span>
+              <button class="quantity-btn plus" 
+                      data-action="click->customization-panel#updateQuantity"
+                      data-customization-panel-ingredient-id-value="<%= dish_ingredient.ingredient_id %>"
+                      data-delta="1">+</button>
+            </div>
+
+            <% substitutions = dish_ingredient.ingredient.substitutions.includes(:substitute_ingredient) %>
+            <% if substitutions.any? %>
+              <div class="substitution-controls">
+                <label>Substitute:</label>
+                <select class="substitution-select"
+                        data-action="change->customization-panel#selectSubstitution"
+                        data-customization-panel-ingredient-id-value="<%= dish_ingredient.ingredient_id %>">
+                  <option value="">None</option>
+                  <% substitutions.each do |substitution| %>
+                    <option value="<%= substitution.id %>">
+                      <%= substitution.substitute_ingredient.name %> 
+                      (<%= substitution.price_adjustment >= 0 ? '+' : '' %><%= number_to_currency(substitution.price_adjustment) %>)
+                    </option>
+                  <% end %>
+                </select>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="price-display">
+      <div class="price-breakdown" data-customization-panel-target="priceDisplay">
+        <div class="price-item">
+          <span>Base Price:</span>
+          <span><%= number_to_currency(dish.base_price) %></span>
+        </div>
+        <div class="price-item adjustments" data-customization-panel-target="adjustments" style="display: none;">
+          <span>Adjustments:</span>
+          <span data-customization-panel-target="adjustmentsValue">$0.00</span>
+        </div>
+        <div class="price-item total">
+          <span>Total:</span>
+          <span data-customization-panel-target="totalValue"><%= number_to_currency(dish.base_price) %></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-actions">
+      <button class="reset-btn" data-action="click->customization-panel#resetToDefault">
+        Reset to Default
+      </button>
+      <button class="apply-btn" data-action="click->customization-panel#applyChanges">
+        Update & Close
+      </button>
+    </div>
+  </div>
+<% end %>
+

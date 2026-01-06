@@ -1,0 +1,83 @@
+<div class="story-viewer" 
+     data-controller="story-viewer media-player hotspot-manager" 
+     data-story-viewer-story-id-value="<%= story.id %>"
+     data-story-viewer-current-media-index-value="0">
+  
+  <!-- Progress Bar -->
+  <div class="progress-bar-container">
+    <% story.media_items.each_with_index do |media_item, index| %>
+      <div class="progress-segment" 
+           data-story-viewer-target="progressSegment"
+           data-media-index="<%= index %>">
+        <div class="progress-fill" data-story-viewer-target="progressFill"></div>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Cart Icon -->
+  <div class="cart-icon" data-controller="cart">
+    <%= link_to cart_items_path, class: "cart-link" do %>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M6 2L3 6v14a2 2 2 0 0 0 2 2h14a2 2 2 0 0 0 2-2V6l-3-4z"></path>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <path d="M16 10a4 4 0 0 1-8 0"></path>
+      </svg>
+      <span class="cart-badge" data-cart-target="badge">0</span>
+    <% end %>
+  </div>
+
+  <!-- Media Display Area -->
+  <div class="media-display-area">
+    <% story.media_items.each_with_index do |media_item, index| %>
+      <div class="media-item-wrapper <%= 'active' if index == 0 %>" 
+           data-media-index="<%= index %>"
+           data-story-viewer-target="mediaWrapper">
+        <%= render partial: "media_items/media_item", locals: { media_item: media_item, story: story } %>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Tap Zones -->
+  <div class="tap-zones">
+    <div class="tap-zone tap-zone-left" 
+         data-action="click->story-viewer#prevMedia"
+         data-story-viewer-target="prevZone"></div>
+    <div class="tap-zone tap-zone-center" 
+         data-action="click->media-player#togglePlayPause"
+         data-media-player-target="playPauseZone"></div>
+    <div class="tap-zone tap-zone-right" 
+         data-action="click->story-viewer#nextMedia"
+         data-story-viewer-target="nextZone"></div>
+  </div>
+
+  <!-- Bottom Action Bar -->
+  <div class="bottom-action-bar">
+    <button class="add-to-cart-btn" 
+            data-action="click->cart#addToCart"
+            data-cart-dish-id-value="<%= story.dish.id %>">
+      Add to Cart
+    </button>
+  </div>
+</div>
+
+<!-- Ingredient Card Modal -->
+<div class="ingredient-card-modal" 
+     data-hotspot-manager-target="modal"
+     data-action="click->hotspot-manager#closeCard">
+  <div class="ingredient-card-content" data-action="click->stop">
+    <%= turbo_frame_tag "ingredient_card" do %>
+      <!-- Content loaded dynamically -->
+    <% end %>
+  </div>
+</div>
+
+<!-- Customization Panel -->
+<div class="customization-panel" 
+     data-controller="customization-panel"
+     data-customization-panel-dish-id-value="<%= story.dish.id %>"
+     data-customization-panel-target="panel">
+  <%= turbo_frame_tag "customization_panel" do %>
+    <!-- Content loaded dynamically -->
+  <% end %>
+</div>
+

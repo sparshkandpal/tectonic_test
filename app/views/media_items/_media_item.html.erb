@@ -1,0 +1,42 @@
+<div class="media-item" 
+     data-controller="media-player"
+     data-media-player-media-type-value="<%= media_item.media_type %>"
+     data-media-player-duration-value="<%= media_item.duration_ms %>">
+  
+  <% if media_item.image? %>
+    <% if media_item.file.attached? %>
+      <%= image_tag media_item.file, class: "media-image", alt: "Story media" %>
+    <% else %>
+      <div class="media-placeholder">Image placeholder</div>
+    <% end %>
+  <% elsif media_item.video? %>
+    <% if media_item.file.attached? %>
+      <%= video_tag url_for(media_item.file), 
+                    class: "media-video", 
+                    controls: false,
+                    autoplay: true,
+                    loop: false,
+                    data: {
+                      media_player_target: "video",
+                      action: "ended->media-player#onVideoEnded"
+                    } %>
+    <% else %>
+      <div class="media-placeholder">Video placeholder</div>
+    <% end %>
+  <% end %>
+
+  <!-- Hotspots -->
+  <div class="hotspots-container">
+    <% media_item.hotspots.each do |hotspot| %>
+      <div class="hotspot-marker" 
+           style="left: <%= hotspot.x_position %>%; top: <%= hotspot.y_position %>%;"
+           data-action="click->hotspot-manager#showIngredientCard"
+           data-hotspot-ingredient-id-value="<%= hotspot.ingredient_id %>"
+           data-hotspot-manager-target="hotspot">
+        <div class="hotspot-pulse"></div>
+        <span class="hotspot-label"><%= hotspot.ingredient.name %></span>
+      </div>
+    <% end %>
+  </div>
+</div>
+

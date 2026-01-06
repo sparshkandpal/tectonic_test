@@ -1,0 +1,58 @@
+<%= turbo_frame_tag "cart_items" do %>
+  <div class="cart-sidebar" data-controller="cart">
+    <div class="cart-header">
+      <h2>Your Cart</h2>
+      <button class="close-cart-btn" data-action="click->cart#closeCart">×</button>
+    </div>
+
+    <div class="cart-items-list">
+      <% if @cart_items.any? %>
+        <% @cart_items.each do |cart_item| %>
+          <div class="cart-item">
+            <div class="cart-item-info">
+              <h4><%= cart_item.dish.name %></h4>
+              <p class="cart-item-price"><%= number_to_currency(cart_item.total_price) %></p>
+              <% if cart_item.customizations.present? %>
+                <div class="cart-item-customizations">
+                  <% cart_item.customizations.each do |ingredient_id, customization| %>
+                    <% ingredient = Ingredient.find_by(id: ingredient_id) %>
+                    <% if ingredient %>
+                      <span class="customization-tag">
+                        <%= ingredient.name %>: <%= customization['quantity'] %>
+                        <% if customization['substitution_id'].present? %>
+                          <% substitution = Substitution.find_by(id: customization['substitution_id']) %>
+                          <% if substitution %>
+                            (substituted with <%= substitution.substitute_ingredient.name %>)
+                          <% end %>
+                        <% end %>
+                      </span>
+                    <% end %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+            <button class="remove-item-btn" 
+                    data-action="click->cart#removeFromCart"
+                    data-cart-item-id-value="<%= cart_item.id %>">
+              Remove
+            </button>
+          </div>
+        <% end %>
+      <% else %>
+        <p class="empty-cart">Your cart is empty</p>
+      <% end %>
+    </div>
+
+    <% if @cart_items.any? %>
+      <div class="cart-footer">
+        <div class="cart-total">
+          <strong>Total: <%= number_to_currency(@cart_items.sum(&:total_price)) %></strong>
+        </div>
+        <button class="clear-cart-btn" data-action="click->cart#clearCart">
+          Clear Cart
+        </button>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+

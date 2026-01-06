@@ -1,0 +1,59 @@
+<%= turbo_frame_tag "ingredient_card" do %>
+  <div class="ingredient-card">
+    <button class="close-btn" data-action="click->hotspot-manager#closeCard">×</button>
+    
+    <% if @ingredient.image_url.present? %>
+      <%= image_tag @ingredient.image_url, class: "ingredient-image", alt: @ingredient.name %>
+    <% end %>
+    
+    <h3 class="ingredient-name"><%= @ingredient.name %></h3>
+    
+    <% if @ingredient.description.present? %>
+      <p class="ingredient-description"><%= @ingredient.description %></p>
+    <% end %>
+
+    <div class="nutritional-facts">
+      <div class="nutrition-item">
+        <span class="nutrition-label">Calories:</span>
+        <span class="nutrition-value"><%= @ingredient.calories %></span>
+      </div>
+      <div class="nutrition-item">
+        <span class="nutrition-label">Protein:</span>
+        <span class="nutrition-value"><%= @ingredient.protein %>g</span>
+      </div>
+      <div class="nutrition-item">
+        <span class="nutrition-label">Carbs:</span>
+        <span class="nutrition-value"><%= @ingredient.carbs %>g</span>
+      </div>
+      <div class="nutrition-item">
+        <span class="nutrition-label">Fat:</span>
+        <span class="nutrition-value"><%= @ingredient.fat %>g</span>
+      </div>
+    </div>
+
+    <% if @ingredient.allergens.present? && @ingredient.allergens.any? %>
+      <div class="allergens">
+        <strong>Allergens:</strong>
+        <ul>
+          <% @ingredient.allergens.each do |allergen| %>
+            <li><%= allergen %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="ingredient-actions">
+      <button class="customize-btn" 
+              data-action="click->customization-panel#openPanel"
+              data-customization-panel-ingredient-id-value="<%= @ingredient.id %>">
+        Customize
+      </button>
+      <button class="add-extra-btn"
+              data-action="click->customization-panel#addExtra"
+              data-customization-panel-ingredient-id-value="<%= @ingredient.id %>">
+        Add Extra
+      </button>
+    </div>
+  </div>
+<% end %>
+

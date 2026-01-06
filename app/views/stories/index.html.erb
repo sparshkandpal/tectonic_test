@@ -1,0 +1,12 @@
+<div class="story-feed-container" data-controller="story-feed" data-story-feed-current-index-value="0">
+  <%= turbo_frame_tag "story_feed" do %>
+    <% if @stories.any? %>
+      <%= render partial: "story", locals: { story: @stories.first } %>
+    <% else %>
+      <div class="no-stories">
+        <p>No stories available</p>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
