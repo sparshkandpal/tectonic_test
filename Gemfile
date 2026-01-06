@@ -29,6 +29,9 @@ gem 'image_processing', '~> 1.2'
 gem 'turbo-rails'
 gem 'stimulus-rails'
 
+# Logger gem required for Ruby 2.7.2 compatibility
+gem 'logger'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
