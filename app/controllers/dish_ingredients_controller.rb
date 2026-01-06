@@ -46,6 +46,6 @@ class DishIngredientsController < ApplicationController
   end
 
   def dish_ingredient_params
-    params.require(:dish_ingredient).permit(:ingredient_id, :default_quantity, :is_customizable, :extra_cost)
+    params.require(:dish_ingredient).permit(:ingredient_id, :default_quantity, :is_customizable, :extra_cost, :quantity_unit)
   end
 end

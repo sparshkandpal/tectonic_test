@@ -17,14 +17,32 @@ export default class extends Controller {
   }
 
   switchRestaurant(event) {
-    event.preventDefault()
-    event.stopPropagation()
+    if (event) {
+      event.preventDefault()
+      event.stopPropagation()
+      event.stopImmediatePropagation()
+    }
     
-    const restaurantId = event.currentTarget.dataset.restaurantSwitcherRestaurantIdValue
-    console.log('Switching to restaurant:', restaurantId) // Debug log
+    const restaurantId = event?.currentTarget?.dataset?.restaurantSwitcherRestaurantIdValue || 
+                         event?.target?.closest('[data-restaurant-switcher-restaurant-id-value]')?.dataset?.restaurantSwitcherRestaurantIdValue
     
-    if (restaurantId) {
-      // Reload page with new restaurant
+    console.log('Switching to restaurant:', restaurantId, 'Current:', this.currentRestaurantIdValue) // Debug log
+    
+    if (!restaurantId) {
+      console.error('No restaurant ID found')
+      return
+    }
+    
+    // Don't switch if already on this restaurant
+    if (this.hasCurrentRestaurantIdValue && parseInt(restaurantId) === this.currentRestaurantIdValue) {
+      console.log('Already on this restaurant, skipping switch')
+      return
+    }
+    
+    // Use Turbo.visit for smoother navigation
+    if (window.Turbo) {
+      window.Turbo.visit(`/stories?restaurant_id=${restaurantId}`)
+    } else {
       window.location.href = `/stories?restaurant_id=${restaurantId}`
     }
   }

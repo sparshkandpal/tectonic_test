@@ -1,6 +1,6 @@
 <div class="admin-links" style="position: fixed; top: 10px; left: 10px; z-index: 1000; background: rgba(255,255,255,0.9); padding: 10px; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
   <%= link_to '➕ Add Dish', new_dish_path, style: 'margin-right: 10px; color: #007bff; text-decoration: none;' %>
-  <%= link_to '📖 Add Story', new_story_path, style: 'color: #007bff; text-decoration: none;' %>
+  <%= link_to '📖 Add Story', new_story_path(restaurant_id: @current_restaurant_id), style: 'color: #007bff; text-decoration: none;' %>
 </div>
 
 <% if @restaurants.any? %>
@@ -11,8 +11,10 @@
     <div class="restaurant-list">
       <% @restaurants.each do |restaurant| %>
         <button class="restaurant-btn <%= 'active' if restaurant.id == @current_restaurant_id %>"
+                type="button"
                 data-action="click->restaurant-switcher#switchRestaurant"
-                data-restaurant-switcher-restaurant-id-value="<%= restaurant.id %>">
+                data-restaurant-switcher-restaurant-id-value="<%= restaurant.id %>"
+                style="pointer-events: auto; z-index: 1001;">
           <%= restaurant.name %>
         </button>
       <% end %>
@@ -38,9 +40,11 @@
 </div>
 
 <script>
-  // Debug: Log stories array
-  console.log('Stories loaded:', <%= @stories.map(&:id).to_json %>);
+  // Debug: Log stories array with positions
+  console.log('Stories loaded:', <%= @stories.map { |s| { id: s.id, position: s.position } }.to_json %>);
+  console.log('Stories IDs array:', <%= @stories.map(&:id).to_json %>);
   console.log('Current restaurant ID:', <%= @current_restaurant_id.to_json %>);
+  console.log('Total stories:', <%= @stories.count %>);
 </script>
 
 <style>
@@ -49,11 +53,12 @@
   top: 60px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 100;
+  z-index: 10000 !important;
   background: rgba(0, 0, 0, 0.7);
   padding: 8px 16px;
   border-radius: 20px;
   backdrop-filter: blur(10px);
+  pointer-events: auto !important;
 }
 
 .restaurant-list {
@@ -71,6 +76,9 @@
   font-weight: bold;
   cursor: pointer;
   transition: all 0.2s;
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 10001 !important;
 }
 
 .restaurant-btn:hover {

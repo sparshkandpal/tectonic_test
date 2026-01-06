@@ -16,10 +16,19 @@
 
   <!-- Progress Bar -->
   <div class="progress-bar-container">
-    <% story.media_items.each_with_index do |media_item, index| %>
+    <% if story.media_items.any? %>
+      <% story.media_items.each_with_index do |media_item, index| %>
+        <div class="progress-segment" 
+             data-story-viewer-target="progressSegment"
+             data-media-index="<%= index %>">
+          <div class="progress-fill" data-story-viewer-target="progressFill"></div>
+        </div>
+      <% end %>
+    <% else %>
+      <!-- Single segment for dish image -->
       <div class="progress-segment" 
            data-story-viewer-target="progressSegment"
-           data-media-index="<%= index %>">
+           data-media-index="0">
         <div class="progress-fill" data-story-viewer-target="progressFill"></div>
       </div>
     <% end %>
@@ -39,11 +48,29 @@
 
   <!-- Media Display Area -->
   <div class="media-display-area">
-    <% story.media_items.each_with_index do |media_item, index| %>
-      <div class="media-item-wrapper <%= 'active' if index == 0 %>" 
-           data-media-index="<%= index %>"
+    <% if story.media_items.any? %>
+      <% story.media_items.each_with_index do |media_item, index| %>
+        <div class="media-item-wrapper <%= 'active' if index == 0 %>" 
+             data-media-index="<%= index %>"
+             data-story-viewer-target="mediaWrapper">
+          <%= render partial: "media_items/media_item", locals: { media_item: media_item, story: story } %>
+        </div>
+      <% end %>
+    <% else %>
+      <!-- Fallback to story image, then dish image when no media items -->
+      <% dish = story.dish || story.restaurant.dishes.first %>
+      <div class="media-item-wrapper active" 
+           data-media-index="0"
            data-story-viewer-target="mediaWrapper">
-        <%= render partial: "media_items/media_item", locals: { media_item: media_item, story: story } %>
+        <div class="media-item">
+          <% if story.image.attached? %>
+            <%= image_tag story.image, class: "media-image", alt: "Story image", loading: "eager", fetchpriority: "high" %>
+          <% elsif dish&.image&.attached? %>
+            <%= image_tag dish.image, class: "media-image", alt: "Dish image", loading: "eager", fetchpriority: "high" %>
+          <% else %>
+            <div class="media-placeholder">No media available</div>
+          <% end %>
+        </div>
       </div>
     <% end %>
   </div>

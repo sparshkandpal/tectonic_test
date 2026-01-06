@@ -27,6 +27,12 @@
     </div>
 
     <div class="form-group">
+      <%= form.label :quantity_unit, "Quantity Unit" %>
+      <%= form.text_field :quantity_unit, class: 'form-control', placeholder: 'e.g., grams, pieces, cups' %>
+      <small class="form-text">Unit of measurement (e.g., grams for chicken, pieces for items)</small>
+    </div>
+
+    <div class="form-group">
       <%= form.label :is_customizable, "Is Customizable?" %>
       <%= form.check_box :is_customizable, class: 'form-control' %>
     </div>

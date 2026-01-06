@@ -258,13 +258,16 @@ export default class extends Controller {
     const display = panel.querySelector(`[data-customization-panel-target="quantityDisplay"][data-ingredient-id="${ingredientId}"]`)
     if (display) {
       const defaultQuantity = parseFloat(display.dataset.defaultQuantity || 1)
-      const currentQuantity = this.customizations[ingredientId]?.quantity || defaultQuantity
-      display.textContent = currentQuantity.toFixed(1)
+      const quantityUnit = display.dataset.quantityUnit || 'units'
+      const currentQuantity = this.customizations[ingredientId]?.quantity !== undefined 
+        ? this.customizations[ingredientId].quantity 
+        : defaultQuantity
+      display.textContent = `${currentQuantity.toFixed(1)} ${quantityUnit}`
       
       // Add visual indicator if modified
       const item = display.closest('.customization-item')
       if (item) {
-        if (currentQuantity !== defaultQuantity) {
+        if (this.customizations[ingredientId] && this.customizations[ingredientId].quantity !== undefined && this.customizations[ingredientId].quantity !== defaultQuantity) {
           item.classList.add('modified')
         } else {
           item.classList.remove('modified')
@@ -312,6 +315,7 @@ export default class extends Controller {
       }
 
       this.debounceTimer = setTimeout(() => {
+        console.log('Calculating price with customizations:', this.customizations) // Debug log
         fetch(`/api/dishes/${this.dishIdValue}/calculate_price`, {
           method: 'POST',
           headers: {
@@ -322,8 +326,15 @@ export default class extends Controller {
             customizations: this.customizations
           })
         })
-        .then(response => response.json())
+        .then(response => {
+          console.log('Price calculation response status:', response.status) // Debug log
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`)
+          }
+          return response.json()
+        })
         .then(data => {
+          console.log('Price calculation result:', data) // Debug log
           this.updatePriceDisplay(data)
           resolve(data)
         })
@@ -331,19 +342,30 @@ export default class extends Controller {
           console.error('Failed to calculate price:', err)
           resolve(null)
         })
-      }, 300)
+      }, 200) // Reduced debounce time for faster updates
     })
   }
 
   updatePriceDisplay(priceData) {
-    if (!priceData) return
+    if (!priceData) {
+      console.warn('No price data provided to updatePriceDisplay') // Debug log
+      return
+    }
+    
+    console.log('Updating price display with:', priceData) // Debug log
     
     const panel = this.hasPanelTarget ? this.panelTarget : document.querySelector('[data-customization-panel-target="panel"]')
-    if (!panel) return
+    if (!panel) {
+      console.error('Panel not found for price display update') // Debug log
+      return
+    }
     
     const totalValue = panel.querySelector('[data-customization-panel-target="totalValue"]')
     if (totalValue) {
       totalValue.textContent = `$${priceData.total.toFixed(2)}`
+      console.log('Updated total value:', totalValue.textContent) // Debug log
+    } else {
+      console.warn('Total value element not found') // Debug log
     }
 
     const adjustments = panel.querySelector('[data-customization-panel-target="adjustments"]')
@@ -354,6 +376,7 @@ export default class extends Controller {
       if (adjustmentsValue) {
         adjustmentsValue.textContent = 
           `${priceData.adjustments >= 0 ? '+' : ''}$${priceData.adjustments.toFixed(2)}`
+        console.log('Updated adjustments value:', adjustmentsValue.textContent) // Debug log
       }
     } else if (adjustments) {
       adjustments.style.display = 'none'
@@ -370,7 +393,8 @@ export default class extends Controller {
       const displays = panel.querySelectorAll('[data-customization-panel-target="quantityDisplay"]')
       displays.forEach(display => {
         const defaultQuantity = parseFloat(display.dataset.defaultQuantity || 1)
-        display.textContent = defaultQuantity.toFixed(1)
+        const quantityUnit = display.dataset.quantityUnit || 'units'
+        display.textContent = `${defaultQuantity.toFixed(1)} ${quantityUnit}`
         const item = display.closest('.customization-item')
         if (item) {
           item.classList.remove('modified')

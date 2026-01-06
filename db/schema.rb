@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2026_01_06_143803) do
+ActiveRecord::Schema.define(version: 2026_01_06_154840) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 2026_01_06_143803) do
     t.decimal "extra_cost"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "quantity_unit", default: "units"
     t.index ["dish_id"], name: "index_dish_ingredients_on_dish_id"
     t.index ["ingredient_id"], name: "index_dish_ingredients_on_ingredient_id"
   end
@@ -124,6 +125,8 @@ ActiveRecord::Schema.define(version: 2026_01_06_143803) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "restaurant_id", null: false
+    t.bigint "dish_id"
+    t.index ["dish_id"], name: "index_stories_on_dish_id"
     t.index ["restaurant_id"], name: "index_stories_on_restaurant_id"
   end
 
@@ -146,6 +149,7 @@ ActiveRecord::Schema.define(version: 2026_01_06_143803) do
   add_foreign_key "hotspots", "ingredients"
   add_foreign_key "hotspots", "media_items"
   add_foreign_key "media_items", "stories"
+  add_foreign_key "stories", "dishes"
   add_foreign_key "stories", "restaurants"
   add_foreign_key "substitutions", "ingredients"
   add_foreign_key "substitutions", "ingredients", column: "substitute_ingredient_id"

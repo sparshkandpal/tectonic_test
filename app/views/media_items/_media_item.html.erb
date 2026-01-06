@@ -5,7 +5,7 @@
   
   <% if media_item.image? %>
     <% if media_item.file.attached? %>
-      <%= image_tag media_item.file, class: "media-image", alt: "Story media" %>
+      <%= image_tag media_item.file, class: "media-image", alt: "Story media", loading: "eager", fetchpriority: "high" %>
     <% else %>
       <div class="media-placeholder">Image placeholder</div>
     <% end %>

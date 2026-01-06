@@ -1,6 +1,6 @@
 class CartItemsController < ApplicationController
   def index
-    @cart_items = CartItem.for_session(session.id.to_s).includes(:dish)
+    @cart_items = CartItem.for_session(session.id.to_s).includes(:dish, dish: :restaurant)
   end
 
   def create

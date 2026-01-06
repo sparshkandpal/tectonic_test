@@ -6,7 +6,8 @@ class StoriesController < ApplicationController
     if @current_restaurant_id
       @current_restaurant = Restaurant.find(@current_restaurant_id)
       @stories = @current_restaurant.stories
-        .includes(:restaurant, media_items: [:hotspots, { hotspots: :ingredient }])
+        .includes(:restaurant, :dish, media_items: [:hotspots, { hotspots: :ingredient, file_attachment: :blob }])
+        .with_attached_image
         .recent
         .ordered
     else
@@ -22,12 +23,20 @@ class StoriesController < ApplicationController
     
     # Get dish for customization (first dish of restaurant or story's dish if exists)
     @dish = @story.dish || @story.restaurant.dishes.first
+    
+    # Support JSON format for preloading
+    respond_to do |format|
+      format.html
+      format.json { render json: { story: @story, media_items: @story.media_items.map { |mi| { id: mi.id, file_url: mi.file.attached? ? url_for(mi.file) : nil } } } }
+    end
   end
 
   def new
     @story = Story.new
+    @story.restaurant_id = params[:restaurant_id] if params[:restaurant_id]
     @story.dish = Dish.find(params[:dish_id]) if params[:dish_id]
     @dishes = Dish.all
+    @restaurants = Restaurant.all
   end
 
   def create
@@ -71,6 +80,6 @@ class StoriesController < ApplicationController
   private
 
   def story_params
-    params.require(:story).permit(:restaurant_id, :dish_id, :position)
+    params.require(:story).permit(:restaurant_id, :dish_id, :position, :image)
   end
 end
