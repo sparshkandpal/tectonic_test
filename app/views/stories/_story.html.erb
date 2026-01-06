@@ -51,10 +51,9 @@
   </div>
 
   <!-- Bottom Action Bar -->
-  <div class="bottom-action-bar">
+  <div class="bottom-action-bar" data-controller="cart" data-cart-dish-id-value="<%= story.dish.id %>">
     <button class="add-to-cart-btn" 
-            data-action="click->cart#addToCart"
-            data-cart-dish-id-value="<%= story.dish.id %>">
+            data-action="click->cart#addToCart">
       Add to Cart
     </button>
   </div>

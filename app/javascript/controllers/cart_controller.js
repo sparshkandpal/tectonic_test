@@ -13,8 +13,11 @@ export default class extends Controller {
     this.undoTimer = null
   }
 
-  addToCart() {
+  addToCart(event) {
+    event.preventDefault()
+    console.log('Add to cart clicked, dishId:', this.dishIdValue)
     const customizations = this.getCustomizations()
+    console.log('Customizations:', customizations)
     
     fetch('/cart_items', {
       method: 'POST',
