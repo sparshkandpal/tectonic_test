@@ -1,0 +1,46 @@
+<div class="admin-container">
+  <div class="admin-header">
+    <h1>Edit Media Item</h1>
+    <%= link_to 'Back to Story', edit_story_path(@story), class: 'back-link' %>
+  </div>
+
+  <%= form_with model: [@story, @media_item], local: true, multipart: true, class: 'media-item-form' do |form| %>
+    <div class="form-group">
+      <%= form.label :media_type, "Media Type" %>
+      <%= form.select :media_type, options_for_select([['Image', 'image'], ['Video', 'video']], @media_item.media_type), 
+          {}, { class: 'form-control' } %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :file, "Upload File" %>
+      <%= form.file_field :file, accept: 'image/*,video/*', class: 'form-control' %>
+      <% if @media_item.file.attached? %>
+        <div class="image-preview">
+          <% if @media_item.image? %>
+            <%= image_tag @media_item.file, style: 'max-width: 300px; margin-top: 10px;' %>
+          <% else %>
+            <p>Current video file attached</p>
+          <% end %>
+          <p class="image-note">Upload new file to replace</p>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :position %>
+      <%= form.number_field :position, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :duration, "Duration (milliseconds)" %>
+      <%= form.number_field :duration, class: 'form-control' %>
+    </div>
+
+    <div class="form-actions">
+      <%= form.submit 'Update Media Item', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
+
+<%= render 'dishes/form_styles' %>
+

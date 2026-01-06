@@ -1,0 +1,50 @@
+<div class="admin-container">
+  <div class="admin-header">
+    <h1>Add Media Item to Story</h1>
+    <%= link_to 'Back to Story', edit_story_path(@story), class: 'back-link' %>
+  </div>
+
+  <%= form_with model: [@story, @media_item], local: true, multipart: true, class: 'media-item-form' do |form| %>
+    <% if @media_item.errors.any? %>
+      <div class="error-messages">
+        <h2><%= pluralize(@media_item.errors.count, "error") %> prohibited this media item from being saved:</h2>
+        <ul>
+          <% @media_item.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= form.label :media_type, "Media Type" %>
+      <%= form.select :media_type, options_for_select([['Image', 'image'], ['Video', 'video']], @media_item.media_type), 
+          { prompt: "Select media type" }, { class: 'form-control' } %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :file, "Upload File" %>
+      <%= form.file_field :file, accept: 'image/*,video/*', class: 'form-control' %>
+      <small class="form-text">Upload an image or video file</small>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :position %>
+      <%= form.number_field :position, value: @media_item.position || (@story.media_items.count + 1), class: 'form-control' %>
+      <small class="form-text">Order in which this media appears in the story</small>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :duration, "Duration (milliseconds)" %>
+      <%= form.number_field :duration, value: @media_item.duration || 5000, class: 'form-control' %>
+      <small class="form-text">For images, default is 5000ms. For videos, this is optional (uses actual video duration if not set).</small>
+    </div>
+
+    <div class="form-actions">
+      <%= form.submit 'Add Media Item', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
+
+<%= render 'dishes/form_styles' %>
+

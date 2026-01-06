@@ -775,3 +775,1651 @@ Completed 200 OK in 6ms (Views: 0.1ms | ActiveRecord: 1.7ms | Allocations: 2872)
 Completed 200 OK in 28ms (Views: 0.1ms | ActiveRecord: 9.6ms | Allocations: 8220)
 
 
+Started GET "/" for 127.0.0.1 at 2026-01-06 19:16:04 +0530
+Processing by StoriesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering stories/index.html.erb within layouts/application
+  [1m[36mStory Exists? (92.3ms)[0m  [1m[34mSELECT 1 AS one FROM "stories" LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/views/stories/index.html.erb:3
+  [1m[36mStory Load (5.5ms)[0m  [1m[34mSELECT "stories".* FROM "stories" ORDER BY "stories"."position" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/views/stories/index.html.erb:4
+  [1m[36mDish Load (8.2ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1[0m  [["id", 1]]
+  ↳ app/views/stories/index.html.erb:4
+  [1m[36mRestaurant Load (2.4ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1[0m  [["id", 1]]
+  ↳ app/views/stories/index.html.erb:4
+  [1m[36mMediaItem Load (44.3ms)[0m  [1m[34mSELECT "media_items".* FROM "media_items" WHERE "media_items"."story_id" = $1 ORDER BY "media_items"."position" ASC[0m  [["story_id", 1]]
+  ↳ app/views/stories/index.html.erb:4
+  [1m[36mHotspot Load (3.5ms)[0m  [1m[34mSELECT "hotspots".* FROM "hotspots" WHERE "hotspots"."media_item_id" IN ($1, $2, $3)[0m  [["media_item_id", 1], ["media_item_id", 2], ["media_item_id", 3]]
+  ↳ app/views/stories/index.html.erb:4
+  [1m[36mIngredient Load (20.2ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."id" IN ($1, $2, $3)[0m  [["id", 1], ["id", 2], ["id", 3]]
+  ↳ app/views/stories/index.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (2.7ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  ↳ app/views/media_items/_media_item.html.erb:7
+  Rendered media_items/_media_item.html.erb (Duration: 14.5ms | Allocations: 1242)
+  [1m[36mActiveStorage::Attachment Load (2.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 2], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  ↳ app/views/media_items/_media_item.html.erb:7
+  Rendered media_items/_media_item.html.erb (Duration: 5.2ms | Allocations: 1211)
+  [1m[36mActiveStorage::Attachment Load (6.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 3], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  ↳ app/views/media_items/_media_item.html.erb:7
+  Rendered media_items/_media_item.html.erb (Duration: 8.8ms | Allocations: 1211)
+  Rendered stories/_story.html.erb (Duration: 35.8ms | Allocations: 4128)
+  Rendered stories/index.html.erb within layouts/application (Duration: 263.5ms | Allocations: 11306)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 284.8ms | Allocations: 17409)
+Completed 200 OK in 705ms (Views: 100.7ms | ActiveRecord: 187.2ms | Allocations: 18059)
+
+
+Started GET "/.well-known/appspecific/com.chrome.devtools.json" for 127.0.0.1 at 2026-01-06 19:16:05 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/.well-known/appspecific/com.chrome.devtools.json"):
+  
+Started GET "/cart_items/count" for 127.0.0.1 at 2026-01-06 19:16:05 +0530
+Started GET "/cart_items/count" for 127.0.0.1 at 2026-01-06 19:16:05 +0530
+Processing by CartItemsController#count as */*
+Processing by CartItemsController#count as */*
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT SUM("cart_items"."quantity") FROM "cart_items" WHERE "cart_items"."session_id" = $1[0m  [["session_id", "b544845022bba6ab8563e53b0608bf52"]]
+  ↳ app/controllers/cart_items_controller.rb:39:in `cart_count'
+Completed 200 OK in 6ms (Views: 0.1ms | ActiveRecord: 1.7ms | Allocations: 2955)
+
+
+  [1m[35m (9.2ms)[0m  [1m[34mSELECT SUM("cart_items"."quantity") FROM "cart_items" WHERE "cart_items"."session_id" = $1[0m  [["session_id", "b544845022bba6ab8563e53b0608bf52"]]
+  ↳ app/controllers/cart_items_controller.rb:39:in `cart_count'
+Completed 200 OK in 16ms (Views: 0.5ms | ActiveRecord: 9.2ms | Allocations: 3851)
+
+
+Started POST "/stories/1/save_progress" for 127.0.0.1 at 2026-01-06 19:16:10 +0530
+Processing by StoriesController#save_progress as */*
+  Parameters: {"media_index"=>1, "id"=>"1", "story"=>{}}
+Completed 200 OK in 51ms (ActiveRecord: 0.0ms | Allocations: 3010)
+
+
+Started GET "/ingredients/2" for 127.0.0.1 at 2026-01-06 19:16:12 +0530
+Processing by IngredientsController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mIngredient Load (1.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/ingredients_controller.rb:3:in `show'
+No template found for IngredientsController#show, rendering head :no_content
+Completed 204 No Content in 6ms (ActiveRecord: 1.1ms | Allocations: 1027)
+
+
+Started POST "/stories/1/save_progress" for 127.0.0.1 at 2026-01-06 19:16:13 +0530
+Processing by StoriesController#save_progress as */*
+  Parameters: {"media_index"=>2, "id"=>"1", "story"=>{}}
+Completed 200 OK in 5ms (ActiveRecord: 0.0ms | Allocations: 1081)
+
+
+Started GET "/ingredients/3" for 127.0.0.1 at 2026-01-06 19:16:20 +0530
+Processing by IngredientsController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mIngredient Load (1.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/ingredients_controller.rb:3:in `show'
+No template found for IngredientsController#show, rendering head :no_content
+Completed 204 No Content in 8ms (ActiveRecord: 1.1ms | Allocations: 1018)
+
+
+Started POST "/cart_items" for 127.0.0.1 at 2026-01-06 19:16:22 +0530
+Processing by CartItemsController#create as */*
+  Parameters: {"dish_id"=>1, "customizations"=>{}, "quantity"=>1, "cart_item"=>{"dish_id"=>1, "quantity"=>1, "customizations"=>{}}}
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/cart_items_controller.rb:14:in `create'
+  [1m[36mDish Load (1.1ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cart_items_controller.rb:14:in `create'
+  [1m[36mCartItem Create (12.9ms)[0m  [1m[32mINSERT INTO "cart_items" ("session_id", "dish_id", "customizations", "total_price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["session_id", "b544845022bba6ab8563e53b0608bf52"], ["dish_id", 1], ["customizations", "{}"], ["total_price", "18.99"], ["created_at", "2026-01-06 13:46:22.448003"], ["updated_at", "2026-01-06 13:46:22.448003"]]
+  ↳ app/controllers/cart_items_controller.rb:14:in `create'
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/cart_items_controller.rb:14:in `create'
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT SUM("cart_items"."quantity") FROM "cart_items" WHERE "cart_items"."session_id" = $1[0m  [["session_id", "b544845022bba6ab8563e53b0608bf52"]]
+  ↳ app/controllers/cart_items_controller.rb:39:in `cart_count'
+Completed 200 OK in 30ms (Views: 0.5ms | ActiveRecord: 19.1ms | Allocations: 4373)
+
+
+Started GET "/cart_items/count" for 127.0.0.1 at 2026-01-06 19:16:22 +0530
+Processing by CartItemsController#count as */*
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT SUM("cart_items"."quantity") FROM "cart_items" WHERE "cart_items"."session_id" = $1[0m  [["session_id", "b544845022bba6ab8563e53b0608bf52"]]
+  ↳ app/controllers/cart_items_controller.rb:39:in `cart_count'
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.7ms | Allocations: 1029)
+
+
+Started GET "/cart_items/count" for 127.0.0.1 at 2026-01-06 19:16:22 +0530
+Processing by CartItemsController#count as */*
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT SUM("cart_items"."quantity") FROM "cart_items" WHERE "cart_items"."session_id" = $1[0m  [["session_id", "b544845022bba6ab8563e53b0608bf52"]]
+  ↳ app/controllers/cart_items_controller.rb:39:in `cart_count'
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.7ms | Allocations: 1102)
+
+
+  [1m[36mDish Load (0.9ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mDish Load (10.8ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" ORDER BY "dishes"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mDish Load (0.6ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" ORDER BY "dishes"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+Started GET "/" for 127.0.0.1 at 2026-01-06 19:36:36 +0530
+Processing by StoriesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering stories/index.html.erb within layouts/application
+  [1m[36mStory Exists? (3.9ms)[0m  [1m[34mSELECT 1 AS one FROM "stories" LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/views/stories/index.html.erb:8
+  [1m[36mStory Load (2.6ms)[0m  [1m[34mSELECT "stories".* FROM "stories" ORDER BY "stories"."position" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mDish Load (1.2ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1[0m  [["id", 1]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mRestaurant Load (0.7ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1[0m  [["id", 1]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mMediaItem Load (1.0ms)[0m  [1m[34mSELECT "media_items".* FROM "media_items" WHERE "media_items"."story_id" = $1 ORDER BY "media_items"."position" ASC[0m  [["story_id", 1]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mHotspot Load (1.3ms)[0m  [1m[34mSELECT "hotspots".* FROM "hotspots" WHERE "hotspots"."media_item_id" IN ($1, $2, $3)[0m  [["media_item_id", 1], ["media_item_id", 2], ["media_item_id", 3]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mIngredient Load (1.3ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."id" IN ($1, $2, $3)[0m  [["id", 1], ["id", 2], ["id", 3]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mActiveStorage::Attachment Load (1.7ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  ↳ app/views/media_items/_media_item.html.erb:7
+  Rendered media_items/_media_item.html.erb (Duration: 9.4ms | Allocations: 3332)
+  [1m[36mActiveStorage::Attachment Load (0.8ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 2], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  ↳ app/views/media_items/_media_item.html.erb:7
+  Rendered media_items/_media_item.html.erb (Duration: 2.1ms | Allocations: 1211)
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 3], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  ↳ app/views/media_items/_media_item.html.erb:7
+  Rendered media_items/_media_item.html.erb (Duration: 1.5ms | Allocations: 1211)
+  Rendered stories/_story.html.erb (Duration: 14.2ms | Allocations: 6779)
+  Rendered stories/index.html.erb within layouts/application (Duration: 82.9ms | Allocations: 42043)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 102.4ms | Allocations: 48195)
+Completed 200 OK in 597ms (Views: 88.6ms | ActiveRecord: 129.0ms | Allocations: 55924)
+
+
+Started GET "/cart_items/count" for 127.0.0.1 at 2026-01-06 19:36:37 +0530
+Processing by CartItemsController#count as */*
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT SUM("cart_items"."quantity") FROM "cart_items" WHERE "cart_items"."session_id" = $1[0m  [["session_id", "b544845022bba6ab8563e53b0608bf52"]]
+  ↳ app/controllers/cart_items_controller.rb:39:in `cart_count'
+Completed 200 OK in 9ms (Views: 0.3ms | ActiveRecord: 1.4ms | Allocations: 1615)
+
+
+Started GET "/cart_items/count" for 127.0.0.1 at 2026-01-06 19:36:37 +0530
+Processing by CartItemsController#count as */*
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT SUM("cart_items"."quantity") FROM "cart_items" WHERE "cart_items"."session_id" = $1[0m  [["session_id", "b544845022bba6ab8563e53b0608bf52"]]
+  ↳ app/controllers/cart_items_controller.rb:39:in `cart_count'
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.5ms | Allocations: 1029)
+
+
+Started GET "/dishes/new" for 127.0.0.1 at 2026-01-06 19:36:38 +0530
+Processing by DishesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dishes/new.html.erb within layouts/application
+  [1m[36mRestaurant Load (1.0ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants"[0m
+  ↳ app/views/dishes/new.html.erb:21
+  Rendered dishes/new.html.erb within layouts/application (Duration: 54.0ms | Allocations: 7414)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 59.4ms | Allocations: 13367)
+Completed 200 OK in 65ms (Views: 57.2ms | ActiveRecord: 4.8ms | Allocations: 14412)
+
+
+Started GET "/dishes/new" for 127.0.0.1 at 2026-01-06 19:36:38 +0530
+Processing by DishesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dishes/new.html.erb within layouts/application
+  [1m[36mRestaurant Load (0.9ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants"[0m
+  ↳ app/views/dishes/new.html.erb:21
+  Rendered dishes/new.html.erb within layouts/application (Duration: 5.4ms | Allocations: 2375)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 13.9ms | Allocations: 8406)
+Completed 200 OK in 15ms (Views: 13.6ms | ActiveRecord: 0.9ms | Allocations: 8844)
+
+
+Started POST "/dishes" for 127.0.0.1 at 2026-01-06 19:38:36 +0530
+Processing by DishesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "dish"=>{"restaurant_id"=>"1", "name"=>"Butter Chicken", "description"=>"Very tasty Punjabi butter chicken", "base_price"=>"300", "image"=>#<ActionDispatch::Http::UploadedFile:0x0000000155d753b0 @tempfile=#<Tempfile:/var/folders/8b/zqd54y5119q3mc7tcvzcb5m80000gp/T/RackMultipart20260106-49700-16wtay7.jpeg>, @original_filename="download (2).jpeg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"dish[image]\"; filename=\"download (2).jpeg\"\r\nContent-Type: image/jpeg\r\n">}, "commit"=>"Create Dish"}
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/dishes_controller.rb:9:in `create'
+  [1m[36mRestaurant Load (0.7ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/dishes_controller.rb:9:in `create'
+  [1m[36mDish Create (4.9ms)[0m  [1m[32mINSERT INTO "dishes" ("restaurant_id", "name", "description", "base_price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["restaurant_id", 1], ["name", "Butter Chicken"], ["description", "Very tasty Punjabi butter chicken"], ["base_price", "300.0"], ["created_at", "2026-01-06 14:08:37.014514"], ["updated_at", "2026-01-06 14:08:37.014514"]]
+  ↳ app/controllers/dishes_controller.rb:9:in `create'
+  [1m[36mActiveStorage::Blob Load (2.9ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 6], ["record_type", "Dish"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/dishes_controller.rb:9:in `create'
+  [1m[36mActiveStorage::Attachment Load (0.8ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 6], ["record_type", "Dish"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/dishes_controller.rb:9:in `create'
+  [1m[36mActiveStorage::Blob Create (2.2ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["key", "4ps6ogdmquv23jjvrpl7th2bowfi"], ["filename", "download (2).jpeg"], ["content_type", "image/jpeg"], ["metadata", "{\"identified\":true}"], ["service_name", "local"], ["byte_size", 9832], ["checksum", "t29pWepgwyGhZ3KJ+87UVA=="], ["created_at", "2026-01-06 14:08:37.037538"]]
+  ↳ app/controllers/dishes_controller.rb:9:in `create'
+  [1m[36mActiveStorage::Attachment Create (2.0ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "image"], ["record_type", "Dish"], ["record_id", 6], ["blob_id", 1], ["created_at", "2026-01-06 14:08:37.041053"]]
+  ↳ app/controllers/dishes_controller.rb:9:in `create'
+  [1m[36mDish Update (1.1ms)[0m  [1m[33mUPDATE "dishes" SET "updated_at" = $1 WHERE "dishes"."id" = $2[0m  [["updated_at", "2026-01-06 14:08:37.043940"], ["id", 6]]
+  ↳ app/controllers/dishes_controller.rb:9:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/dishes_controller.rb:9:in `create'
+[36m  Disk Storage (1.0ms) [0m[32mUploaded file to key: 4ps6ogdmquv23jjvrpl7th2bowfi (checksum: t29pWepgwyGhZ3KJ+87UVA==)[0m
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: f0d97b1d-28e9-46d0-b4ed-e03d9563d4d3) to Async(default) with arguments: #<GlobalID:0x000000014599abd8 @uri=#<URI::GID gid://tectonic-test/ActiveStorage::Blob/1>>
+Redirected to http://127.0.0.1:3000/stories/new?dish_id=6
+Completed 302 Found in 131ms (ActiveRecord: 38.4ms | Allocations: 31240)
+
+
+Started GET "/stories/new?dish_id=6" for 127.0.0.1 at 2026-01-06 19:38:37 +0530
+Processing by StoriesController#new as TURBO_STREAM
+  Parameters: {"dish_id"=>"6"}
+  [1m[36mDish Load (0.4ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/stories_controller.rb:15:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering stories/new.html.erb within layouts/application
+  [1m[36mDish Load (0.9ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes"[0m
+  ↳ app/views/stories/new.html.erb:21
+  Rendered dishes/_form_styles.html.erb (Duration: 0.4ms | Allocations: 237)
+  Rendered stories/new.html.erb within layouts/application (Duration: 3.8ms | Allocations: 2587)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 13.6ms | Allocations: 8641)
+Completed 200 OK in 16ms (Views: 13.0ms | ActiveRecord: 1.2ms | Allocations: 10030)
+
+
+  [1m[36mActiveStorage::Blob Load (1.0ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [f0d97b1d-28e9-46d0-b4ed-e03d9563d4d3] Performing ActiveStorage::AnalyzeJob (Job ID: f0d97b1d-28e9-46d0-b4ed-e03d9563d4d3) from Async(default) enqueued at 2026-01-06T14:08:37Z with arguments: #<GlobalID:0x00000001362b4e90 @uri=#<URI::GID gid://tectonic-test/ActiveStorage::Blob/1>>
+[ActiveJob] [ActiveStorage::AnalyzeJob] [f0d97b1d-28e9-46d0-b4ed-e03d9563d4d3] [36m  Disk Storage (0.2ms) [0m[34mDownloaded file from key: 4ps6ogdmquv23jjvrpl7th2bowfi[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [f0d97b1d-28e9-46d0-b4ed-e03d9563d4d3]   [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [f0d97b1d-28e9-46d0-b4ed-e03d9563d4d3]   [1m[36mActiveStorage::Blob Update (0.4ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = $1 WHERE "active_storage_blobs"."id" = $2[0m  [["metadata", "{\"identified\":true,\"width\":194,\"height\":259,\"analyzed\":true}"], ["id", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [f0d97b1d-28e9-46d0-b4ed-e03d9563d4d3]   [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [f0d97b1d-28e9-46d0-b4ed-e03d9563d4d3] Performed ActiveStorage::AnalyzeJob (Job ID: f0d97b1d-28e9-46d0-b4ed-e03d9563d4d3) from Async(default) in 469.18ms
+Started POST "/stories" for 127.0.0.1 at 2026-01-06 19:38:43 +0530
+Processing by StoriesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "story"=>{"dish_id"=>"6", "position"=>"1"}, "commit"=>"Create Story"}
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/stories_controller.rb:21:in `create'
+  [1m[36mDish Load (1.7ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/stories_controller.rb:21:in `create'
+  [1m[36mStory Create (2.1ms)[0m  [1m[32mINSERT INTO "stories" ("dish_id", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["dish_id", 6], ["position", 1], ["created_at", "2026-01-06 14:08:43.883691"], ["updated_at", "2026-01-06 14:08:43.883691"]]
+  ↳ app/controllers/stories_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/stories_controller.rb:21:in `create'
+Redirected to http://127.0.0.1:3000/stories/6/edit
+Completed 302 Found in 18ms (ActiveRecord: 6.2ms | Allocations: 4233)
+
+
+Started GET "/stories/6/edit" for 127.0.0.1 at 2026-01-06 19:38:43 +0530
+Processing by StoriesController#edit as TURBO_STREAM
+  Parameters: {"id"=>"6"}
+  [1m[36mStory Load (1.1ms)[0m  [1m[34mSELECT "stories".* FROM "stories" WHERE "stories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/stories_controller.rb:30:in `edit'
+  Rendering layout layouts/application.html.erb
+  Rendering stories/edit.html.erb within layouts/application
+  [1m[36mDish Load (1.5ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/stories/edit.html.erb:3
+  [1m[36mDish Load (1.3ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes"[0m
+  ↳ app/views/stories/edit.html.erb:10
+  [1m[36mMediaItem Load (2.1ms)[0m  [1m[34mSELECT "media_items".* FROM "media_items" WHERE "media_items"."story_id" = $1 ORDER BY "media_items"."position" ASC[0m  [["story_id", 6]]
+  ↳ app/views/stories/edit.html.erb:28
+  Rendered dishes/_form_styles.html.erb (Duration: 0.2ms | Allocations: 39)
+  Rendered stories/edit.html.erb within layouts/application (Duration: 17.7ms | Allocations: 4398)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 30.3ms | Allocations: 10568)
+Completed 200 OK in 37ms (Views: 26.5ms | ActiveRecord: 6.1ms | Allocations: 12014)
+
+
+Started GET "/stories/6/media_items/new" for 127.0.0.1 at 2026-01-06 19:38:45 +0530
+Processing by MediaItemsController#new as HTML
+  Parameters: {"story_id"=>"6"}
+  [1m[36mStory Load (1.3ms)[0m  [1m[34mSELECT "stories".* FROM "stories" WHERE "stories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/media_items_controller.rb:7:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering media_items/new.html.erb within layouts/application
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "media_items" WHERE "media_items"."story_id" = $1[0m  [["story_id", 6]]
+  ↳ app/views/media_items/new.html.erb:33
+  Rendered dishes/_form_styles.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered media_items/new.html.erb within layouts/application (Duration: 13.1ms | Allocations: 3228)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 22.1ms | Allocations: 9223)
+Completed 200 OK in 32ms (Views: 23.7ms | ActiveRecord: 2.9ms | Allocations: 11244)
+
+
+Started GET "/stories/6/media_items/new" for 127.0.0.1 at 2026-01-06 19:38:45 +0530
+Processing by MediaItemsController#new as HTML
+  Parameters: {"story_id"=>"6"}
+  [1m[36mStory Load (1.4ms)[0m  [1m[34mSELECT "stories".* FROM "stories" WHERE "stories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/media_items_controller.rb:7:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering media_items/new.html.erb within layouts/application
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "media_items" WHERE "media_items"."story_id" = $1[0m  [["story_id", 6]]
+  ↳ app/views/media_items/new.html.erb:33
+  Rendered dishes/_form_styles.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered media_items/new.html.erb within layouts/application (Duration: 6.3ms | Allocations: 1970)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 15.5ms | Allocations: 8149)
+Completed 200 OK in 24ms (Views: 14.9ms | ActiveRecord: 2.8ms | Allocations: 9560)
+
+
+Started POST "/stories/6/media_items" for 127.0.0.1 at 2026-01-06 19:38:55 +0530
+Processing by MediaItemsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "media_item"=>{"media_type"=>"image", "file"=>#<ActionDispatch::Http::UploadedFile:0x0000000140019708 @tempfile=#<Tempfile:/var/folders/8b/zqd54y5119q3mc7tcvzcb5m80000gp/T/RackMultipart20260106-49700-1nw869a.jpeg>, @original_filename="download (2).jpeg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"media_item[file]\"; filename=\"download (2).jpeg\"\r\nContent-Type: image/jpeg\r\n">, "position"=>"1", "duration"=>"5000"}, "commit"=>"Add Media Item", "story_id"=>"6"}
+  [1m[36mStory Load (1.3ms)[0m  [1m[34mSELECT "stories".* FROM "stories" WHERE "stories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/media_items_controller.rb:12:in `create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/media_items_controller.rb:18:in `create'
+  [1m[36mStory Load (1.4ms)[0m  [1m[34mSELECT "stories".* FROM "stories" WHERE "stories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/media_items_controller.rb:18:in `create'
+  [1m[36mMediaItem Create (2.6ms)[0m  [1m[32mINSERT INTO "media_items" ("story_id", "media_type", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["story_id", 6], ["media_type", 0], ["position", 1], ["created_at", "2026-01-06 14:08:55.890362"], ["updated_at", "2026-01-06 14:08:55.890362"]]
+  ↳ app/controllers/media_items_controller.rb:18:in `create'
+  [1m[36mActiveStorage::Blob Load (5.7ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 15], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  ↳ app/controllers/media_items_controller.rb:18:in `create'
+  [1m[36mActiveStorage::Attachment Load (1.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 15], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  ↳ app/controllers/media_items_controller.rb:18:in `create'
+  [1m[36mActiveStorage::Blob Create (0.9ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["key", "8ihco02ymza9e7cm5kk79vcxnice"], ["filename", "download (2).jpeg"], ["content_type", "image/jpeg"], ["metadata", "{\"identified\":true}"], ["service_name", "local"], ["byte_size", 9832], ["checksum", "t29pWepgwyGhZ3KJ+87UVA=="], ["created_at", "2026-01-06 14:08:55.912915"]]
+  ↳ app/controllers/media_items_controller.rb:18:in `create'
+  [1m[36mActiveStorage::Attachment Create (0.8ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "file"], ["record_type", "MediaItem"], ["record_id", 15], ["blob_id", 2], ["created_at", "2026-01-06 14:08:55.915181"]]
+  ↳ app/controllers/media_items_controller.rb:18:in `create'
+  [1m[36mMediaItem Update (0.9ms)[0m  [1m[33mUPDATE "media_items" SET "updated_at" = $1 WHERE "media_items"."id" = $2[0m  [["updated_at", "2026-01-06 14:08:55.916867"], ["id", 15]]
+  ↳ app/controllers/media_items_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/media_items_controller.rb:18:in `create'
+[36m  Disk Storage (1.3ms) [0m[32mUploaded file to key: 8ihco02ymza9e7cm5kk79vcxnice (checksum: t29pWepgwyGhZ3KJ+87UVA==)[0m
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: ca33fb88-30e5-419e-b6bb-9f596290278f) to Async(default) with arguments: #<GlobalID:0x0000000155c34ed8 @uri=#<URI::GID gid://tectonic-test/ActiveStorage::Blob/2>>
+Redirected to http://127.0.0.1:3000/stories/6/edit
+Completed 302 Found in 61ms (ActiveRecord: 16.4ms | Allocations: 14563)
+
+
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [ca33fb88-30e5-419e-b6bb-9f596290278f] Performing ActiveStorage::AnalyzeJob (Job ID: ca33fb88-30e5-419e-b6bb-9f596290278f) from Async(default) enqueued at 2026-01-06T14:08:55Z with arguments: #<GlobalID:0x00000001364a61b8 @uri=#<URI::GID gid://tectonic-test/ActiveStorage::Blob/2>>
+Started GET "/stories/6/edit" for 127.0.0.1 at 2026-01-06 19:38:55 +0530
+[ActiveJob] [ActiveStorage::AnalyzeJob] [ca33fb88-30e5-419e-b6bb-9f596290278f] [36m  Disk Storage (1.1ms) [0m[34mDownloaded file from key: 8ihco02ymza9e7cm5kk79vcxnice[0m
+Processing by StoriesController#edit as TURBO_STREAM
+  Parameters: {"id"=>"6"}
+  [1m[36mStory Load (1.4ms)[0m  [1m[34mSELECT "stories".* FROM "stories" WHERE "stories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/stories_controller.rb:30:in `edit'
+  Rendering layout layouts/application.html.erb
+  Rendering stories/edit.html.erb within layouts/application
+  [1m[36mDish Load (0.6ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/stories/edit.html.erb:3
+  [1m[36mDish Load (0.5ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes"[0m
+  ↳ app/views/stories/edit.html.erb:10
+  [1m[36mMediaItem Load (0.9ms)[0m  [1m[34mSELECT "media_items".* FROM "media_items" WHERE "media_items"."story_id" = $1 ORDER BY "media_items"."position" ASC[0m  [["story_id", 6]]
+  ↳ app/views/stories/edit.html.erb:28
+  [1m[36mActiveStorage::Attachment Load (2.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 15], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  ↳ app/views/stories/edit.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.8ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/stories/edit.html.erb:33
+  Rendered dishes/_form_styles.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered stories/edit.html.erb within layouts/application (Duration: 13.6ms | Allocations: 6151)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 28.3ms | Allocations: 12205)
+Completed 200 OK in 33ms (Views: 23.9ms | ActiveRecord: 6.2ms | Allocations: 13324)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ff54b842bd05e30f93f021f5ccc4d8979bb580bc/download%20(2).jpeg" for 127.0.0.1 at 2026-01-06 19:38:56 +0530
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ff54b842bd05e30f93f021f5ccc4d8979bb580bc", "filename"=>"download (2)"}
+  [1m[36mActiveStorage::Blob Load (2.4ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+[36m  Disk Storage (1.1ms) [0m[34mGenerated URL for file at key: 8ihco02ymza9e7cm5kk79vcxnice (http://127.0.0.1:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhPR2xvWTI4d01ubHRlbUU1WlRkamJUVnJhemM1ZG1ONGJtbGpaUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1SdmQyNXNiMkZrSUNVeU9ESWxNamt1YW5CbFp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25aRzkzYm14dllXUWxNakFsTWpneUpUSTVMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDI2LTAxLTA2VDE0OjEzOjU2LjAyOVoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--28337ad13a3e85601750a865cbe7bf2a801648b0/download%20(2).jpeg)[0m
+Redirected to http://127.0.0.1:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhPR2xvWTI4d01ubHRlbUU1WlRkamJUVnJhemM1ZG1ONGJtbGpaUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1SdmQyNXNiMkZrSUNVeU9ESWxNamt1YW5CbFp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25aRzkzYm14dllXUWxNakFsTWpneUpUSTVMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDI2LTAxLTA2VDE0OjEzOjU2LjAyOVoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--28337ad13a3e85601750a865cbe7bf2a801648b0/download%20(2).jpeg
+Completed 302 Found in 15ms (ActiveRecord: 2.4ms | Allocations: 2145)
+
+
+[ActiveJob] [ActiveStorage::AnalyzeJob] [ca33fb88-30e5-419e-b6bb-9f596290278f]   [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [ca33fb88-30e5-419e-b6bb-9f596290278f]   [1m[36mActiveStorage::Blob Update (0.6ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = $1 WHERE "active_storage_blobs"."id" = $2[0m  [["metadata", "{\"identified\":true,\"width\":194,\"height\":259,\"analyzed\":true}"], ["id", 2]]
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhPR2xvWTI4d01ubHRlbUU1WlRkamJUVnJhemM1ZG1ONGJtbGpaUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1SdmQyNXNiMkZrSUNVeU9ESWxNamt1YW5CbFp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25aRzkzYm14dllXUWxNakFsTWpneUpUSTVMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDI2LTAxLTA2VDE0OjEzOjU2LjAyOVoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--28337ad13a3e85601750a865cbe7bf2a801648b0/download%20(2).jpeg" for 127.0.0.1 at 2026-01-06 19:38:56 +0530
+[ActiveJob] [ActiveStorage::AnalyzeJob] [ca33fb88-30e5-419e-b6bb-9f596290278f]   [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [ca33fb88-30e5-419e-b6bb-9f596290278f] Performed ActiveStorage::AnalyzeJob (Job ID: ca33fb88-30e5-419e-b6bb-9f596290278f) from Async(default) in 108.85ms
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"download (2)"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 386)
+
+
+Started PATCH "/stories/6" for 127.0.0.1 at 2026-01-06 19:38:59 +0530
+Processing by StoriesController#update as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "story"=>{"dish_id"=>"6", "position"=>"1"}, "commit"=>"Update Story", "id"=>"6"}
+  [1m[36mStory Load (0.9ms)[0m  [1m[34mSELECT "stories".* FROM "stories" WHERE "stories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/stories_controller.rb:35:in `update'
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/stories_controller.rb:36:in `update'
+  [1m[36mDish Load (1.1ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/stories_controller.rb:36:in `update'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/stories_controller.rb:36:in `update'
+Redirected to http://127.0.0.1:3000/stories/6/edit
+Completed 302 Found in 15ms (ActiveRecord: 4.9ms | Allocations: 3550)
+
+
+Started GET "/stories/6/edit" for 127.0.0.1 at 2026-01-06 19:38:59 +0530
+Processing by StoriesController#edit as TURBO_STREAM
+  Parameters: {"id"=>"6"}
+  [1m[36mStory Load (1.0ms)[0m  [1m[34mSELECT "stories".* FROM "stories" WHERE "stories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/stories_controller.rb:30:in `edit'
+  Rendering layout layouts/application.html.erb
+  Rendering stories/edit.html.erb within layouts/application
+  [1m[36mDish Load (1.3ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/stories/edit.html.erb:3
+  [1m[36mDish Load (1.2ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes"[0m
+  ↳ app/views/stories/edit.html.erb:10
+  [1m[36mMediaItem Load (1.3ms)[0m  [1m[34mSELECT "media_items".* FROM "media_items" WHERE "media_items"."story_id" = $1 ORDER BY "media_items"."position" ASC[0m  [["story_id", 6]]
+  ↳ app/views/stories/edit.html.erb:28
+  [1m[36mActiveStorage::Attachment Load (4.7ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 15], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  ↳ app/views/stories/edit.html.erb:31
+  [1m[36mActiveStorage::Blob Load (1.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/stories/edit.html.erb:33
+  Rendered dishes/_form_styles.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered stories/edit.html.erb within layouts/application (Duration: 23.8ms | Allocations: 5833)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 31.8ms | Allocations: 11883)
+Completed 200 OK in 37ms (Views: 23.0ms | ActiveRecord: 10.8ms | Allocations: 13002)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhPR2xvWTI4d01ubHRlbUU1WlRkamJUVnJhemM1ZG1ONGJtbGpaUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1SdmQyNXNiMkZrSUNVeU9ESWxNamt1YW5CbFp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25aRzkzYm14dllXUWxNakFsTWpneUpUSTVMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDI2LTAxLTA2VDE0OjEzOjU2LjAyOVoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--28337ad13a3e85601750a865cbe7bf2a801648b0/download%20(2).jpeg" for 127.0.0.1 at 2026-01-06 19:38:59 +0530
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"download (2)"}
+Completed 200 OK in 2ms (ActiveRecord: 0.0ms | Allocations: 330)
+
+
+Started GET "/" for ::1 at 2026-01-06 19:39:05 +0530
+Processing by StoriesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering stories/index.html.erb within layouts/application
+  [1m[36mStory Exists? (3.7ms)[0m  [1m[34mSELECT 1 AS one FROM "stories" LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/views/stories/index.html.erb:8
+  [1m[36mStory Load (1.5ms)[0m  [1m[34mSELECT "stories".* FROM "stories" ORDER BY "stories"."position" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mDish Load (1.3ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1[0m  [["id", 1]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mRestaurant Load (1.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1[0m  [["id", 1]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mMediaItem Load (1.2ms)[0m  [1m[34mSELECT "media_items".* FROM "media_items" WHERE "media_items"."story_id" = $1 ORDER BY "media_items"."position" ASC[0m  [["story_id", 1]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mHotspot Load (1.3ms)[0m  [1m[34mSELECT "hotspots".* FROM "hotspots" WHERE "hotspots"."media_item_id" IN ($1, $2, $3)[0m  [["media_item_id", 1], ["media_item_id", 2], ["media_item_id", 3]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mIngredient Load (1.3ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."id" IN ($1, $2, $3)[0m  [["id", 1], ["id", 2], ["id", 3]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mActiveStorage::Attachment Load (1.7ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  ↳ app/views/media_items/_media_item.html.erb:7
+  Rendered media_items/_media_item.html.erb (Duration: 4.2ms | Allocations: 1214)
+  [1m[36mActiveStorage::Attachment Load (1.8ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 2], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  ↳ app/views/media_items/_media_item.html.erb:7
+  Rendered media_items/_media_item.html.erb (Duration: 5.1ms | Allocations: 1211)
+  [1m[36mActiveStorage::Attachment Load (2.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 3], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  ↳ app/views/media_items/_media_item.html.erb:7
+  Rendered media_items/_media_item.html.erb (Duration: 8.7ms | Allocations: 1211)
+  Rendered stories/_story.html.erb (Duration: 20.0ms | Allocations: 4076)
+  Rendered stories/index.html.erb within layouts/application (Duration: 47.9ms | Allocations: 11194)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 58.1ms | Allocations: 17242)
+Completed 200 OK in 64ms (Views: 41.5ms | ActiveRecord: 17.6ms | Allocations: 17804)
+
+
+Started GET "/cart_items/count" for ::1 at 2026-01-06 19:39:05 +0530
+Processing by CartItemsController#count as */*
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT SUM("cart_items"."quantity") FROM "cart_items" WHERE "cart_items"."session_id" = $1[0m  [["session_id", "02f0c87c4adbd8d5ad95a2e1da03ce78"]]
+  ↳ app/controllers/cart_items_controller.rb:39:in `cart_count'
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.4ms | Allocations: 1034)
+
+
+Started GET "/cart_items/count" for ::1 at 2026-01-06 19:39:05 +0530
+Processing by CartItemsController#count as */*
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT SUM("cart_items"."quantity") FROM "cart_items" WHERE "cart_items"."session_id" = $1[0m  [["session_id", "02f0c87c4adbd8d5ad95a2e1da03ce78"]]
+  ↳ app/controllers/cart_items_controller.rb:39:in `cart_count'
+Completed 200 OK in 6ms (Views: 0.1ms | ActiveRecord: 0.6ms | Allocations: 1029)
+
+
+Started GET "/sw.js" for ::1 at 2026-01-06 19:39:07 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/sw.js"):
+  
+Started GET "/ingredients/1" for ::1 at 2026-01-06 19:39:07 +0530
+Processing by IngredientsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mIngredient Load (0.8ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/ingredients_controller.rb:3:in `show'
+No template found for IngredientsController#show, rendering head :no_content
+Completed 204 No Content in 10ms (ActiveRecord: 0.8ms | Allocations: 3102)
+
+
+Started GET "/stories/new" for ::1 at 2026-01-06 19:39:09 +0530
+Processing by StoriesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering stories/new.html.erb within layouts/application
+  [1m[36mDish Load (1.0ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes"[0m
+  ↳ app/views/stories/new.html.erb:21
+  Rendered dishes/_form_styles.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered stories/new.html.erb within layouts/application (Duration: 6.3ms | Allocations: 1965)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 17.6ms | Allocations: 8015)
+Completed 200 OK in 20ms (Views: 17.2ms | ActiveRecord: 1.0ms | Allocations: 8555)
+
+
+Started GET "/stories/new" for ::1 at 2026-01-06 19:39:09 +0530
+Processing by StoriesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering stories/new.html.erb within layouts/application
+  [1m[36mDish Load (1.0ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes"[0m
+  ↳ app/views/stories/new.html.erb:21
+  Rendered dishes/_form_styles.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered stories/new.html.erb within layouts/application (Duration: 5.3ms | Allocations: 1965)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 15.1ms | Allocations: 8015)
+Completed 200 OK in 22ms (Views: 20.3ms | ActiveRecord: 1.0ms | Allocations: 8459)
+
+
+Started GET "/cart_items/count" for ::1 at 2026-01-06 19:39:11 +0530
+Processing by CartItemsController#count as */*
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT SUM("cart_items"."quantity") FROM "cart_items" WHERE "cart_items"."session_id" = $1[0m  [["session_id", "02f0c87c4adbd8d5ad95a2e1da03ce78"]]
+  ↳ app/controllers/cart_items_controller.rb:39:in `cart_count'
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 0.8ms | Allocations: 1101)
+
+
+Started GET "/cart_items/count" for ::1 at 2026-01-06 19:39:11 +0530
+Processing by CartItemsController#count as */*
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT SUM("cart_items"."quantity") FROM "cart_items" WHERE "cart_items"."session_id" = $1[0m  [["session_id", "02f0c87c4adbd8d5ad95a2e1da03ce78"]]
+  ↳ app/controllers/cart_items_controller.rb:39:in `cart_count'
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.8ms | Allocations: 1333)
+
+
+Started POST "/stories/1/save_progress" for ::1 at 2026-01-06 19:39:17 +0530
+Processing by StoriesController#save_progress as */*
+  Parameters: {"media_index"=>1, "id"=>"1", "story"=>{}}
+Completed 200 OK in 11ms (ActiveRecord: 0.0ms | Allocations: 1141)
+
+
+  [1m[35m (3.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "dishes"[0m
+Started POST "/stories/1/save_progress" for ::1 at 2026-01-06 19:39:23 +0530
+Processing by StoriesController#save_progress as */*
+  Parameters: {"media_index"=>2, "id"=>"1", "story"=>{}}
+Completed 200 OK in 2ms (ActiveRecord: 0.0ms | Allocations: 1081)
+
+
+  [1m[36mDish Load (0.5ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mDish Load (1.5ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" ORDER BY "dishes"."id" ASC LIMIT $1[0m  [["LIMIT", 5]]
+  [1m[36mDish Load (0.5ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" ORDER BY "dishes"."id" ASC LIMIT $1[0m  [["LIMIT", 5]]
+  [1m[36mDish Load (0.7ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" ORDER BY "dishes"."id" ASC LIMIT $1[0m  [["LIMIT", 5]]
+  [1m[36mDish Load (0.8ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" ORDER BY "dishes"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStory Load (1.9ms)[0m  [1m[34mSELECT "stories".* FROM "stories" WHERE "stories"."dish_id" = $1[0m  [["dish_id", 1]]
+  [1m[36mMediaItem Load (0.8ms)[0m  [1m[34mSELECT "media_items".* FROM "media_items" WHERE "media_items"."story_id" = $1 ORDER BY "media_items"."position" ASC[0m  [["story_id", 1]]
+  [1m[36mActiveStorage::Attachment Load (1.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  [1m[36mHotspot Load (0.6ms)[0m  [1m[34mSELECT "hotspots".* FROM "hotspots" WHERE "hotspots"."media_item_id" = $1[0m  [["media_item_id", 1]]
+  [1m[36mHotspot Destroy (0.5ms)[0m  [1m[31mDELETE FROM "hotspots" WHERE "hotspots"."id" = $1[0m  [["id", 1]]
+  [1m[36mMediaItem Destroy (0.4ms)[0m  [1m[31mDELETE FROM "media_items" WHERE "media_items"."id" = $1[0m  [["id", 1]]
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 2], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  [1m[36mHotspot Load (0.1ms)[0m  [1m[34mSELECT "hotspots".* FROM "hotspots" WHERE "hotspots"."media_item_id" = $1[0m  [["media_item_id", 2]]
+  [1m[36mHotspot Destroy (0.1ms)[0m  [1m[31mDELETE FROM "hotspots" WHERE "hotspots"."id" = $1[0m  [["id", 2]]
+  [1m[36mMediaItem Destroy (0.2ms)[0m  [1m[31mDELETE FROM "media_items" WHERE "media_items"."id" = $1[0m  [["id", 2]]
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 3], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  [1m[36mHotspot Load (0.1ms)[0m  [1m[34mSELECT "hotspots".* FROM "hotspots" WHERE "hotspots"."media_item_id" = $1[0m  [["media_item_id", 3]]
+  [1m[36mHotspot Destroy (0.1ms)[0m  [1m[31mDELETE FROM "hotspots" WHERE "hotspots"."id" = $1[0m  [["id", 3]]
+  [1m[36mMediaItem Destroy (0.2ms)[0m  [1m[31mDELETE FROM "media_items" WHERE "media_items"."id" = $1[0m  [["id", 3]]
+  [1m[36mStory Destroy (0.2ms)[0m  [1m[31mDELETE FROM "stories" WHERE "stories"."id" = $1[0m  [["id", 1]]
+  [1m[36mDishIngredient Load (1.6ms)[0m  [1m[34mSELECT "dish_ingredients".* FROM "dish_ingredients" WHERE "dish_ingredients"."dish_id" = $1[0m  [["dish_id", 1]]
+  [1m[36mDishIngredient Destroy (0.2ms)[0m  [1m[31mDELETE FROM "dish_ingredients" WHERE "dish_ingredients"."id" = $1[0m  [["id", 1]]
+  [1m[36mDishIngredient Destroy (0.1ms)[0m  [1m[31mDELETE FROM "dish_ingredients" WHERE "dish_ingredients"."id" = $1[0m  [["id", 2]]
+  [1m[36mDishIngredient Destroy (0.1ms)[0m  [1m[31mDELETE FROM "dish_ingredients" WHERE "dish_ingredients"."id" = $1[0m  [["id", 3]]
+  [1m[36mCartItem Load (1.4ms)[0m  [1m[34mSELECT "cart_items".* FROM "cart_items" WHERE "cart_items"."dish_id" = $1[0m  [["dish_id", 1]]
+  [1m[36mCartItem Destroy (0.3ms)[0m  [1m[31mDELETE FROM "cart_items" WHERE "cart_items"."id" = $1[0m  [["id", 1]]
+  [1m[36mCartItem Destroy (0.2ms)[0m  [1m[31mDELETE FROM "cart_items" WHERE "cart_items"."id" = $1[0m  [["id", 2]]
+  [1m[36mCartItem Destroy (0.2ms)[0m  [1m[31mDELETE FROM "cart_items" WHERE "cart_items"."id" = $1[0m  [["id", 3]]
+  [1m[36mDish Destroy (1.2ms)[0m  [1m[31mDELETE FROM "dishes" WHERE "dishes"."id" = $1[0m  [["id", 1]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mDish Load (1.3ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" ORDER BY "dishes"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStory Load (0.2ms)[0m  [1m[34mSELECT "stories".* FROM "stories" WHERE "stories"."dish_id" = $1[0m  [["dish_id", 2]]
+  [1m[36mMediaItem Load (0.2ms)[0m  [1m[34mSELECT "media_items".* FROM "media_items" WHERE "media_items"."story_id" = $1 ORDER BY "media_items"."position" ASC[0m  [["story_id", 2]]
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 4], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  [1m[36mHotspot Load (0.2ms)[0m  [1m[34mSELECT "hotspots".* FROM "hotspots" WHERE "hotspots"."media_item_id" = $1[0m  [["media_item_id", 4]]
+  [1m[36mHotspot Destroy (0.2ms)[0m  [1m[31mDELETE FROM "hotspots" WHERE "hotspots"."id" = $1[0m  [["id", 4]]
+  [1m[36mMediaItem Destroy (0.3ms)[0m  [1m[31mDELETE FROM "media_items" WHERE "media_items"."id" = $1[0m  [["id", 4]]
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 5], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  [1m[36mHotspot Load (0.2ms)[0m  [1m[34mSELECT "hotspots".* FROM "hotspots" WHERE "hotspots"."media_item_id" = $1[0m  [["media_item_id", 5]]
+  [1m[36mHotspot Destroy (0.2ms)[0m  [1m[31mDELETE FROM "hotspots" WHERE "hotspots"."id" = $1[0m  [["id", 5]]
+  [1m[36mMediaItem Destroy (0.2ms)[0m  [1m[31mDELETE FROM "media_items" WHERE "media_items"."id" = $1[0m  [["id", 5]]
+  [1m[36mStory Destroy (0.3ms)[0m  [1m[31mDELETE FROM "stories" WHERE "stories"."id" = $1[0m  [["id", 2]]
+  [1m[36mDishIngredient Load (0.2ms)[0m  [1m[34mSELECT "dish_ingredients".* FROM "dish_ingredients" WHERE "dish_ingredients"."dish_id" = $1[0m  [["dish_id", 2]]
+  [1m[36mDishIngredient Destroy (0.2ms)[0m  [1m[31mDELETE FROM "dish_ingredients" WHERE "dish_ingredients"."id" = $1[0m  [["id", 4]]
+  [1m[36mDishIngredient Destroy (0.2ms)[0m  [1m[31mDELETE FROM "dish_ingredients" WHERE "dish_ingredients"."id" = $1[0m  [["id", 5]]
+  [1m[36mCartItem Load (0.2ms)[0m  [1m[34mSELECT "cart_items".* FROM "cart_items" WHERE "cart_items"."dish_id" = $1[0m  [["dish_id", 2]]
+  [1m[36mDish Destroy (0.6ms)[0m  [1m[31mDELETE FROM "dishes" WHERE "dishes"."id" = $1[0m  [["id", 2]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mDish Load (0.6ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" ORDER BY "dishes"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStory Load (0.3ms)[0m  [1m[34mSELECT "stories".* FROM "stories" WHERE "stories"."dish_id" = $1[0m  [["dish_id", 3]]
+  [1m[36mMediaItem Load (0.2ms)[0m  [1m[34mSELECT "media_items".* FROM "media_items" WHERE "media_items"."story_id" = $1 ORDER BY "media_items"."position" ASC[0m  [["story_id", 3]]
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 6], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  [1m[36mHotspot Load (0.2ms)[0m  [1m[34mSELECT "hotspots".* FROM "hotspots" WHERE "hotspots"."media_item_id" = $1[0m  [["media_item_id", 6]]
+  [1m[36mHotspot Destroy (0.3ms)[0m  [1m[31mDELETE FROM "hotspots" WHERE "hotspots"."id" = $1[0m  [["id", 6]]
+  [1m[36mMediaItem Destroy (0.3ms)[0m  [1m[31mDELETE FROM "media_items" WHERE "media_items"."id" = $1[0m  [["id", 6]]
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 7], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  [1m[36mHotspot Load (0.1ms)[0m  [1m[34mSELECT "hotspots".* FROM "hotspots" WHERE "hotspots"."media_item_id" = $1[0m  [["media_item_id", 7]]
+  [1m[36mHotspot Destroy (0.2ms)[0m  [1m[31mDELETE FROM "hotspots" WHERE "hotspots"."id" = $1[0m  [["id", 7]]
+  [1m[36mMediaItem Destroy (1.5ms)[0m  [1m[31mDELETE FROM "media_items" WHERE "media_items"."id" = $1[0m  [["id", 7]]
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 8], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  [1m[36mHotspot Load (0.1ms)[0m  [1m[34mSELECT "hotspots".* FROM "hotspots" WHERE "hotspots"."media_item_id" = $1[0m  [["media_item_id", 8]]
+  [1m[36mHotspot Destroy (0.2ms)[0m  [1m[31mDELETE FROM "hotspots" WHERE "hotspots"."id" = $1[0m  [["id", 8]]
+  [1m[36mMediaItem Destroy (0.2ms)[0m  [1m[31mDELETE FROM "media_items" WHERE "media_items"."id" = $1[0m  [["id", 8]]
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 9], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  [1m[36mHotspot Load (0.1ms)[0m  [1m[34mSELECT "hotspots".* FROM "hotspots" WHERE "hotspots"."media_item_id" = $1[0m  [["media_item_id", 9]]
+  [1m[36mHotspot Destroy (0.2ms)[0m  [1m[31mDELETE FROM "hotspots" WHERE "hotspots"."id" = $1[0m  [["id", 9]]
+  [1m[36mMediaItem Destroy (0.2ms)[0m  [1m[31mDELETE FROM "media_items" WHERE "media_items"."id" = $1[0m  [["id", 9]]
+  [1m[36mStory Destroy (0.4ms)[0m  [1m[31mDELETE FROM "stories" WHERE "stories"."id" = $1[0m  [["id", 3]]
+  [1m[36mDishIngredient Load (0.3ms)[0m  [1m[34mSELECT "dish_ingredients".* FROM "dish_ingredients" WHERE "dish_ingredients"."dish_id" = $1[0m  [["dish_id", 3]]
+  [1m[36mDishIngredient Destroy (0.2ms)[0m  [1m[31mDELETE FROM "dish_ingredients" WHERE "dish_ingredients"."id" = $1[0m  [["id", 6]]
+  [1m[36mDishIngredient Destroy (0.3ms)[0m  [1m[31mDELETE FROM "dish_ingredients" WHERE "dish_ingredients"."id" = $1[0m  [["id", 7]]
+  [1m[36mDishIngredient Destroy (0.2ms)[0m  [1m[31mDELETE FROM "dish_ingredients" WHERE "dish_ingredients"."id" = $1[0m  [["id", 8]]
+  [1m[36mDishIngredient Destroy (0.2ms)[0m  [1m[31mDELETE FROM "dish_ingredients" WHERE "dish_ingredients"."id" = $1[0m  [["id", 9]]
+  [1m[36mDishIngredient Destroy (0.2ms)[0m  [1m[31mDELETE FROM "dish_ingredients" WHERE "dish_ingredients"."id" = $1[0m  [["id", 10]]
+  [1m[36mCartItem Load (0.2ms)[0m  [1m[34mSELECT "cart_items".* FROM "cart_items" WHERE "cart_items"."dish_id" = $1[0m  [["dish_id", 3]]
+  [1m[36mDish Destroy (0.6ms)[0m  [1m[31mDELETE FROM "dishes" WHERE "dishes"."id" = $1[0m  [["id", 3]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mDish Load (0.6ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" ORDER BY "dishes"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStory Load (0.2ms)[0m  [1m[34mSELECT "stories".* FROM "stories" WHERE "stories"."dish_id" = $1[0m  [["dish_id", 4]]
+  [1m[36mMediaItem Load (0.2ms)[0m  [1m[34mSELECT "media_items".* FROM "media_items" WHERE "media_items"."story_id" = $1 ORDER BY "media_items"."position" ASC[0m  [["story_id", 4]]
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 10], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  [1m[36mHotspot Load (0.1ms)[0m  [1m[34mSELECT "hotspots".* FROM "hotspots" WHERE "hotspots"."media_item_id" = $1[0m  [["media_item_id", 10]]
+  [1m[36mHotspot Destroy (0.3ms)[0m  [1m[31mDELETE FROM "hotspots" WHERE "hotspots"."id" = $1[0m  [["id", 10]]
+  [1m[36mMediaItem Destroy (0.3ms)[0m  [1m[31mDELETE FROM "media_items" WHERE "media_items"."id" = $1[0m  [["id", 10]]
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 11], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  [1m[36mHotspot Load (0.2ms)[0m  [1m[34mSELECT "hotspots".* FROM "hotspots" WHERE "hotspots"."media_item_id" = $1[0m  [["media_item_id", 11]]
+  [1m[36mMediaItem Destroy (0.3ms)[0m  [1m[31mDELETE FROM "media_items" WHERE "media_items"."id" = $1[0m  [["id", 11]]
+  [1m[36mStory Destroy (0.4ms)[0m  [1m[31mDELETE FROM "stories" WHERE "stories"."id" = $1[0m  [["id", 4]]
+  [1m[36mDishIngredient Load (0.3ms)[0m  [1m[34mSELECT "dish_ingredients".* FROM "dish_ingredients" WHERE "dish_ingredients"."dish_id" = $1[0m  [["dish_id", 4]]
+  [1m[36mDishIngredient Destroy (0.2ms)[0m  [1m[31mDELETE FROM "dish_ingredients" WHERE "dish_ingredients"."id" = $1[0m  [["id", 11]]
+  [1m[36mCartItem Load (0.2ms)[0m  [1m[34mSELECT "cart_items".* FROM "cart_items" WHERE "cart_items"."dish_id" = $1[0m  [["dish_id", 4]]
+  [1m[36mDish Destroy (0.7ms)[0m  [1m[31mDELETE FROM "dishes" WHERE "dishes"."id" = $1[0m  [["id", 4]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mDish Load (0.7ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" ORDER BY "dishes"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStory Load (0.2ms)[0m  [1m[34mSELECT "stories".* FROM "stories" WHERE "stories"."dish_id" = $1[0m  [["dish_id", 5]]
+  [1m[36mMediaItem Load (0.3ms)[0m  [1m[34mSELECT "media_items".* FROM "media_items" WHERE "media_items"."story_id" = $1 ORDER BY "media_items"."position" ASC[0m  [["story_id", 5]]
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 12], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  [1m[36mHotspot Load (0.1ms)[0m  [1m[34mSELECT "hotspots".* FROM "hotspots" WHERE "hotspots"."media_item_id" = $1[0m  [["media_item_id", 12]]
+  [1m[36mHotspot Destroy (0.3ms)[0m  [1m[31mDELETE FROM "hotspots" WHERE "hotspots"."id" = $1[0m  [["id", 11]]
+  [1m[36mMediaItem Destroy (0.2ms)[0m  [1m[31mDELETE FROM "media_items" WHERE "media_items"."id" = $1[0m  [["id", 12]]
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 13], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  [1m[36mHotspot Load (0.1ms)[0m  [1m[34mSELECT "hotspots".* FROM "hotspots" WHERE "hotspots"."media_item_id" = $1[0m  [["media_item_id", 13]]
+  [1m[36mMediaItem Destroy (0.2ms)[0m  [1m[31mDELETE FROM "media_items" WHERE "media_items"."id" = $1[0m  [["id", 13]]
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 14], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  [1m[36mHotspot Load (0.1ms)[0m  [1m[34mSELECT "hotspots".* FROM "hotspots" WHERE "hotspots"."media_item_id" = $1[0m  [["media_item_id", 14]]
+  [1m[36mMediaItem Destroy (0.1ms)[0m  [1m[31mDELETE FROM "media_items" WHERE "media_items"."id" = $1[0m  [["id", 14]]
+  [1m[36mStory Destroy (0.3ms)[0m  [1m[31mDELETE FROM "stories" WHERE "stories"."id" = $1[0m  [["id", 5]]
+  [1m[36mDishIngredient Load (0.2ms)[0m  [1m[34mSELECT "dish_ingredients".* FROM "dish_ingredients" WHERE "dish_ingredients"."dish_id" = $1[0m  [["dish_id", 5]]
+  [1m[36mDishIngredient Destroy (0.2ms)[0m  [1m[31mDELETE FROM "dish_ingredients" WHERE "dish_ingredients"."id" = $1[0m  [["id", 12]]
+  [1m[36mCartItem Load (0.2ms)[0m  [1m[34mSELECT "cart_items".* FROM "cart_items" WHERE "cart_items"."dish_id" = $1[0m  [["dish_id", 5]]
+  [1m[36mDish Destroy (0.4ms)[0m  [1m[31mDELETE FROM "dishes" WHERE "dishes"."id" = $1[0m  [["id", 5]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/" for ::1 at 2026-01-06 19:40:16 +0530
+Processing by StoriesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering stories/index.html.erb within layouts/application
+  [1m[36mStory Exists? (1.7ms)[0m  [1m[34mSELECT 1 AS one FROM "stories" LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/views/stories/index.html.erb:8
+  [1m[36mStory Load (1.9ms)[0m  [1m[34mSELECT "stories".* FROM "stories" ORDER BY "stories"."position" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mDish Load (1.4ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1[0m  [["id", 6]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mRestaurant Load (1.4ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1[0m  [["id", 1]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mMediaItem Load (1.3ms)[0m  [1m[34mSELECT "media_items".* FROM "media_items" WHERE "media_items"."story_id" = $1 ORDER BY "media_items"."position" ASC[0m  [["story_id", 6]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mHotspot Load (1.4ms)[0m  [1m[34mSELECT "hotspots".* FROM "hotspots" WHERE "hotspots"."media_item_id" = $1[0m  [["media_item_id", 15]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mActiveStorage::Attachment Load (2.6ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 15], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  ↳ app/views/media_items/_media_item.html.erb:7
+  [1m[36mActiveStorage::Blob Load (1.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/media_items/_media_item.html.erb:8
+  Rendered media_items/_media_item.html.erb (Duration: 11.3ms | Allocations: 2363)
+  Rendered stories/_story.html.erb (Duration: 12.1ms | Allocations: 2673)
+  Rendered stories/index.html.erb within layouts/application (Duration: 37.8ms | Allocations: 8471)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 49.1ms | Allocations: 14503)
+Completed 200 OK in 55ms (Views: 37.1ms | ActiveRecord: 12.8ms | Allocations: 15113)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ff54b842bd05e30f93f021f5ccc4d8979bb580bc/download%20(2).jpeg" for ::1 at 2026-01-06 19:40:16 +0530
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ff54b842bd05e30f93f021f5ccc4d8979bb580bc", "filename"=>"download (2)"}
+  [1m[36mActiveStorage::Blob Load (2.5ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+[36m  Disk Storage (3.0ms) [0m[34mGenerated URL for file at key: 8ihco02ymza9e7cm5kk79vcxnice (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhPR2xvWTI4d01ubHRlbUU1WlRkamJUVnJhemM1ZG1ONGJtbGpaUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1SdmQyNXNiMkZrSUNVeU9ESWxNamt1YW5CbFp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25aRzkzYm14dllXUWxNakFsTWpneUpUSTVMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDI2LTAxLTA2VDE0OjE1OjE2LjgyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--869112e96457ba4cbf49f86a6f89130484f228f0/download%20(2).jpeg)[0m
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhPR2xvWTI4d01ubHRlbUU1WlRkamJUVnJhemM1ZG1ONGJtbGpaUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1SdmQyNXNiMkZrSUNVeU9ESWxNamt1YW5CbFp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25aRzkzYm14dllXUWxNakFsTWpneUpUSTVMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDI2LTAxLTA2VDE0OjE1OjE2LjgyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--869112e96457ba4cbf49f86a6f89130484f228f0/download%20(2).jpeg
+Started GET "/cart_items/count" for ::1 at 2026-01-06 19:40:16 +0530
+Completed 302 Found in 16ms (ActiveRecord: 2.5ms | Allocations: 3668)
+
+
+Processing by CartItemsController#count as */*
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhPR2xvWTI4d01ubHRlbUU1WlRkamJUVnJhemM1ZG1ONGJtbGpaUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1SdmQyNXNiMkZrSUNVeU9ESWxNamt1YW5CbFp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25aRzkzYm14dllXUWxNakFsTWpneUpUSTVMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDI2LTAxLTA2VDE0OjE1OjE2LjgyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--869112e96457ba4cbf49f86a6f89130484f228f0/download%20(2).jpeg" for ::1 at 2026-01-06 19:40:16 +0530
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"download (2)"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 318)
+
+
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT SUM("cart_items"."quantity") FROM "cart_items" WHERE "cart_items"."session_id" = $1[0m  [["session_id", "02f0c87c4adbd8d5ad95a2e1da03ce78"]]
+  ↳ app/controllers/cart_items_controller.rb:39:in `cart_count'
+Completed 200 OK in 8ms (Views: 0.1ms | ActiveRecord: 1.3ms | Allocations: 3575)
+
+
+Started GET "/cart_items/count" for ::1 at 2026-01-06 19:40:16 +0530
+Processing by CartItemsController#count as */*
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT SUM("cart_items"."quantity") FROM "cart_items" WHERE "cart_items"."session_id" = $1[0m  [["session_id", "02f0c87c4adbd8d5ad95a2e1da03ce78"]]
+  ↳ app/controllers/cart_items_controller.rb:39:in `cart_count'
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.8ms | Allocations: 2044)
+
+
+Started GET "/sw.js" for ::1 at 2026-01-06 19:40:18 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/sw.js"):
+  
+Started GET "/stories/new" for ::1 at 2026-01-06 19:40:23 +0530
+Processing by StoriesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering stories/new.html.erb within layouts/application
+  [1m[36mDish Load (3.6ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes"[0m
+  ↳ app/views/stories/new.html.erb:21
+  Rendered dishes/_form_styles.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered stories/new.html.erb within layouts/application (Duration: 14.4ms | Allocations: 1748)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 27.9ms | Allocations: 7798)
+Completed 200 OK in 32ms (Views: 25.9ms | ActiveRecord: 3.6ms | Allocations: 8242)
+
+
+Started GET "/stories/new" for ::1 at 2026-01-06 19:40:23 +0530
+Processing by StoriesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering stories/new.html.erb within layouts/application
+  [1m[36mDish Load (0.7ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes"[0m
+  ↳ app/views/stories/new.html.erb:21
+  Rendered dishes/_form_styles.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered stories/new.html.erb within layouts/application (Duration: 3.4ms | Allocations: 1749)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 9.0ms | Allocations: 7780)
+Completed 200 OK in 10ms (Views: 8.6ms | ActiveRecord: 0.7ms | Allocations: 8223)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhPR2xvWTI4d01ubHRlbUU1WlRkamJUVnJhemM1ZG1ONGJtbGpaUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1SdmQyNXNiMkZrSUNVeU9ESWxNamt1YW5CbFp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25aRzkzYm14dllXUWxNakFsTWpneUpUSTVMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDI2LTAxLTA2VDE0OjE1OjE2LjgyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--869112e96457ba4cbf49f86a6f89130484f228f0/download%20(2).jpeg" for ::1 at 2026-01-06 19:40:23 +0530
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"download (2)"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 320)
+
+
+Started GET "/stories" for ::1 at 2026-01-06 19:40:33 +0530
+Processing by StoriesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering stories/index.html.erb within layouts/application
+  [1m[36mStory Exists? (2.0ms)[0m  [1m[34mSELECT 1 AS one FROM "stories" LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/views/stories/index.html.erb:8
+  [1m[36mStory Load (1.2ms)[0m  [1m[34mSELECT "stories".* FROM "stories" ORDER BY "stories"."position" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mDish Load (1.6ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1[0m  [["id", 6]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mRestaurant Load (2.0ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1[0m  [["id", 1]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mMediaItem Load (1.4ms)[0m  [1m[34mSELECT "media_items".* FROM "media_items" WHERE "media_items"."story_id" = $1 ORDER BY "media_items"."position" ASC[0m  [["story_id", 6]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mHotspot Load (2.5ms)[0m  [1m[34mSELECT "hotspots".* FROM "hotspots" WHERE "hotspots"."media_item_id" = $1[0m  [["media_item_id", 15]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mActiveStorage::Attachment Load (1.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 15], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  ↳ app/views/media_items/_media_item.html.erb:7
+  [1m[36mActiveStorage::Blob Load (1.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/media_items/_media_item.html.erb:8
+  Rendered media_items/_media_item.html.erb (Duration: 8.0ms | Allocations: 2364)
+  Rendered stories/_story.html.erb (Duration: 8.9ms | Allocations: 2674)
+  Rendered stories/index.html.erb within layouts/application (Duration: 47.2ms | Allocations: 8487)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 62.2ms | Allocations: 14538)
+Completed 200 OK in 67ms (Views: 49.7ms | ActiveRecord: 13.4ms | Allocations: 15150)
+
+
+Started GET "/stories" for ::1 at 2026-01-06 19:40:33 +0530
+Processing by StoriesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering stories/index.html.erb within layouts/application
+  [1m[36mStory Exists? (1.8ms)[0m  [1m[34mSELECT 1 AS one FROM "stories" LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/views/stories/index.html.erb:8
+  [1m[36mStory Load (1.6ms)[0m  [1m[34mSELECT "stories".* FROM "stories" ORDER BY "stories"."position" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mDish Load (1.3ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1[0m  [["id", 6]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mRestaurant Load (1.7ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1[0m  [["id", 1]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mMediaItem Load (1.4ms)[0m  [1m[34mSELECT "media_items".* FROM "media_items" WHERE "media_items"."story_id" = $1 ORDER BY "media_items"."position" ASC[0m  [["story_id", 6]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mHotspot Load (1.8ms)[0m  [1m[34mSELECT "hotspots".* FROM "hotspots" WHERE "hotspots"."media_item_id" = $1[0m  [["media_item_id", 15]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mActiveStorage::Attachment Load (1.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 15], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  ↳ app/views/media_items/_media_item.html.erb:7
+  [1m[36mActiveStorage::Blob Load (1.5ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/media_items/_media_item.html.erb:8
+  Rendered media_items/_media_item.html.erb (Duration: 7.7ms | Allocations: 2363)
+  Rendered stories/_story.html.erb (Duration: 8.9ms | Allocations: 2673)
+  Rendered stories/index.html.erb within layouts/application (Duration: 31.1ms | Allocations: 8470)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 45.8ms | Allocations: 14502)
+Completed 200 OK in 49ms (Views: 34.2ms | ActiveRecord: 12.4ms | Allocations: 15116)
+
+
+Started GET "/cart_items/count" for ::1 at 2026-01-06 19:40:33 +0530
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhPR2xvWTI4d01ubHRlbUU1WlRkamJUVnJhemM1ZG1ONGJtbGpaUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1SdmQyNXNiMkZrSUNVeU9ESWxNamt1YW5CbFp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25aRzkzYm14dllXUWxNakFsTWpneUpUSTVMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDI2LTAxLTA2VDE0OjE1OjE2LjgyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--869112e96457ba4cbf49f86a6f89130484f228f0/download%20(2).jpeg" for ::1 at 2026-01-06 19:40:33 +0530
+Processing by CartItemsController#count as */*
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"download (2)"}
+Completed 200 OK in 2ms (ActiveRecord: 0.0ms | Allocations: 495)
+
+
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT SUM("cart_items"."quantity") FROM "cart_items" WHERE "cart_items"."session_id" = $1[0m  [["session_id", "02f0c87c4adbd8d5ad95a2e1da03ce78"]]
+  ↳ app/controllers/cart_items_controller.rb:39:in `cart_count'
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 1.1ms | Allocations: 1658)
+
+
+Started GET "/cart_items/count" for ::1 at 2026-01-06 19:40:33 +0530
+Processing by CartItemsController#count as */*
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT SUM("cart_items"."quantity") FROM "cart_items" WHERE "cart_items"."session_id" = $1[0m  [["session_id", "02f0c87c4adbd8d5ad95a2e1da03ce78"]]
+  ↳ app/controllers/cart_items_controller.rb:39:in `cart_count'
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.9ms | Allocations: 1325)
+
+
+Started GET "/dishes/new" for ::1 at 2026-01-06 19:40:34 +0530
+Processing by DishesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dishes/new.html.erb within layouts/application
+  [1m[36mRestaurant Load (0.9ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants"[0m
+  ↳ app/views/dishes/new.html.erb:21
+  Rendered dishes/new.html.erb within layouts/application (Duration: 5.4ms | Allocations: 2399)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 16.1ms | Allocations: 8451)
+Completed 200 OK in 17ms (Views: 15.8ms | ActiveRecord: 0.9ms | Allocations: 8888)
+
+
+Started GET "/dishes/new" for ::1 at 2026-01-06 19:40:35 +0530
+Processing by DishesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dishes/new.html.erb within layouts/application
+  [1m[36mRestaurant Load (1.5ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants"[0m
+  ↳ app/views/dishes/new.html.erb:21
+  Rendered dishes/new.html.erb within layouts/application (Duration: 7.5ms | Allocations: 2376)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 25.9ms | Allocations: 8407)
+Completed 200 OK in 27ms (Views: 25.2ms | ActiveRecord: 1.5ms | Allocations: 8842)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhPR2xvWTI4d01ubHRlbUU1WlRkamJUVnJhemM1ZG1ONGJtbGpaUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1SdmQyNXNiMkZrSUNVeU9ESWxNamt1YW5CbFp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25aRzkzYm14dllXUWxNakFsTWpneUpUSTVMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDI2LTAxLTA2VDE0OjE1OjE2LjgyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--869112e96457ba4cbf49f86a6f89130484f228f0/download%20(2).jpeg" for ::1 at 2026-01-06 19:40:35 +0530
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"download (2)"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 322)
+
+
+Started POST "/dishes" for ::1 at 2026-01-06 19:41:25 +0530
+Processing by DishesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "dish"=>{"restaurant_id"=>"1", "name"=>"Pizza", "description"=>"Margeritha Pizza with mozarella toppings", "base_price"=>"250", "image"=>#<ActionDispatch::Http::UploadedFile:0x0000000145ac4fb8 @tempfile=#<Tempfile:/var/folders/8b/zqd54y5119q3mc7tcvzcb5m80000gp/T/RackMultipart20260106-49700-1mr5nol.jpeg>, @original_filename="download (3).jpeg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"dish[image]\"; filename=\"download (3).jpeg\"\r\nContent-Type: image/jpeg\r\n">}, "commit"=>"Create Dish"}
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/dishes_controller.rb:9:in `create'
+  [1m[36mRestaurant Load (0.6ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/dishes_controller.rb:9:in `create'
+  [1m[36mDish Create (8.2ms)[0m  [1m[32mINSERT INTO "dishes" ("restaurant_id", "name", "description", "base_price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["restaurant_id", 1], ["name", "Pizza"], ["description", "Margeritha Pizza with mozarella toppings"], ["base_price", "250.0"], ["created_at", "2026-01-06 14:11:25.336560"], ["updated_at", "2026-01-06 14:11:25.336560"]]
+  ↳ app/controllers/dishes_controller.rb:9:in `create'
+  [1m[36mActiveStorage::Blob Load (1.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 7], ["record_type", "Dish"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/dishes_controller.rb:9:in `create'
+  [1m[36mActiveStorage::Attachment Load (1.9ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 7], ["record_type", "Dish"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/dishes_controller.rb:9:in `create'
+  [1m[36mActiveStorage::Blob Create (1.3ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["key", "qibc4tbivmggu0z6ltjblfxbflk9"], ["filename", "download (3).jpeg"], ["content_type", "image/jpeg"], ["metadata", "{\"identified\":true}"], ["service_name", "local"], ["byte_size", 8018], ["checksum", "wtcQ2QXBEeOigEDZIL2vYQ=="], ["created_at", "2026-01-06 14:11:25.356570"]]
+  ↳ app/controllers/dishes_controller.rb:9:in `create'
+  [1m[36mActiveStorage::Attachment Create (0.6ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "image"], ["record_type", "Dish"], ["record_id", 7], ["blob_id", 3], ["created_at", "2026-01-06 14:11:25.360533"]]
+  ↳ app/controllers/dishes_controller.rb:9:in `create'
+  [1m[36mDish Update (5.7ms)[0m  [1m[33mUPDATE "dishes" SET "updated_at" = $1 WHERE "dishes"."id" = $2[0m  [["updated_at", "2026-01-06 14:11:25.361819"], ["id", 7]]
+  ↳ app/controllers/dishes_controller.rb:9:in `create'
+  [1m[36mTRANSACTION (2.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/dishes_controller.rb:9:in `create'
+[36m  Disk Storage (1.5ms) [0m[32mUploaded file to key: qibc4tbivmggu0z6ltjblfxbflk9 (checksum: wtcQ2QXBEeOigEDZIL2vYQ==)[0m
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: e34419bf-583f-4d30-9932-3b238788286a) to Async(default) with arguments: #<GlobalID:0x0000000155e08a98 @uri=#<URI::GID gid://tectonic-test/ActiveStorage::Blob/3>>
+Redirected to http://localhost:3000/stories/new?dish_id=7
+Completed 302 Found in 51ms (ActiveRecord: 23.0ms | Allocations: 12424)
+
+
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [e34419bf-583f-4d30-9932-3b238788286a] Performing ActiveStorage::AnalyzeJob (Job ID: e34419bf-583f-4d30-9932-3b238788286a) from Async(default) enqueued at 2026-01-06T14:11:25Z with arguments: #<GlobalID:0x0000000145a913c0 @uri=#<URI::GID gid://tectonic-test/ActiveStorage::Blob/3>>
+[ActiveJob] [ActiveStorage::AnalyzeJob] [e34419bf-583f-4d30-9932-3b238788286a] [36m  Disk Storage (0.1ms) [0m[34mDownloaded file from key: qibc4tbivmggu0z6ltjblfxbflk9[0m
+Started GET "/stories/new?dish_id=7" for ::1 at 2026-01-06 19:41:25 +0530
+Processing by StoriesController#new as TURBO_STREAM
+  Parameters: {"dish_id"=>"7"}
+  [1m[36mDish Load (0.4ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/stories_controller.rb:15:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering stories/new.html.erb within layouts/application
+  [1m[36mDish Load (0.4ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes"[0m
+  ↳ app/views/stories/new.html.erb:21
+  Rendered dishes/_form_styles.html.erb (Duration: 0.0ms | Allocations: 37)
+  Rendered stories/new.html.erb within layouts/application (Duration: 2.2ms | Allocations: 1594)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 11.7ms | Allocations: 7644)
+Completed 200 OK in 14ms (Views: 11.6ms | ActiveRecord: 0.9ms | Allocations: 8792)
+
+
+[ActiveJob] [ActiveStorage::AnalyzeJob] [e34419bf-583f-4d30-9932-3b238788286a]   [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [e34419bf-583f-4d30-9932-3b238788286a]   [1m[36mActiveStorage::Blob Update (0.6ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = $1 WHERE "active_storage_blobs"."id" = $2[0m  [["metadata", "{\"identified\":true,\"width\":275,\"height\":183,\"analyzed\":true}"], ["id", 3]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [e34419bf-583f-4d30-9932-3b238788286a]   [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [e34419bf-583f-4d30-9932-3b238788286a] Performed ActiveStorage::AnalyzeJob (Job ID: e34419bf-583f-4d30-9932-3b238788286a) from Async(default) in 78.38ms
+Started POST "/stories" for ::1 at 2026-01-06 19:41:29 +0530
+Processing by StoriesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "story"=>{"dish_id"=>"7", "position"=>"2"}, "commit"=>"Create Story"}
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/stories_controller.rb:21:in `create'
+  [1m[36mDish Load (1.5ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/stories_controller.rb:21:in `create'
+  [1m[36mStory Create (1.7ms)[0m  [1m[32mINSERT INTO "stories" ("dish_id", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["dish_id", 7], ["position", 2], ["created_at", "2026-01-06 14:11:29.089315"], ["updated_at", "2026-01-06 14:11:29.089315"]]
+  ↳ app/controllers/stories_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/stories_controller.rb:21:in `create'
+Redirected to http://localhost:3000/stories/7/edit
+Completed 302 Found in 14ms (ActiveRecord: 6.0ms | Allocations: 3679)
+
+
+Started GET "/stories/7/edit" for ::1 at 2026-01-06 19:41:29 +0530
+Processing by StoriesController#edit as TURBO_STREAM
+  Parameters: {"id"=>"7"}
+  [1m[36mStory Load (0.9ms)[0m  [1m[34mSELECT "stories".* FROM "stories" WHERE "stories"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/stories_controller.rb:30:in `edit'
+  Rendering layout layouts/application.html.erb
+  Rendering stories/edit.html.erb within layouts/application
+  [1m[36mDish Load (1.1ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/stories/edit.html.erb:3
+  [1m[36mDish Load (1.2ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes"[0m
+  ↳ app/views/stories/edit.html.erb:10
+  [1m[36mMediaItem Load (0.6ms)[0m  [1m[34mSELECT "media_items".* FROM "media_items" WHERE "media_items"."story_id" = $1 ORDER BY "media_items"."position" ASC[0m  [["story_id", 7]]
+  ↳ app/views/stories/edit.html.erb:28
+  Rendered dishes/_form_styles.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered stories/edit.html.erb within layouts/application (Duration: 8.0ms | Allocations: 3459)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 12.6ms | Allocations: 9492)
+Completed 200 OK in 16ms (Views: 10.3ms | ActiveRecord: 3.7ms | Allocations: 10611)
+
+
+Started PATCH "/stories/7" for ::1 at 2026-01-06 19:41:31 +0530
+Processing by StoriesController#update as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "story"=>{"dish_id"=>"7", "position"=>"2"}, "commit"=>"Update Story", "id"=>"7"}
+  [1m[36mStory Load (0.7ms)[0m  [1m[34mSELECT "stories".* FROM "stories" WHERE "stories"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/stories_controller.rb:35:in `update'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/stories_controller.rb:36:in `update'
+  [1m[36mDish Load (0.9ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/stories_controller.rb:36:in `update'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/stories_controller.rb:36:in `update'
+Redirected to http://localhost:3000/stories/7/edit
+Completed 302 Found in 9ms (ActiveRecord: 3.2ms | Allocations: 3532)
+
+
+Started GET "/stories/7/edit" for ::1 at 2026-01-06 19:41:31 +0530
+Processing by StoriesController#edit as TURBO_STREAM
+  Parameters: {"id"=>"7"}
+  [1m[36mStory Load (0.7ms)[0m  [1m[34mSELECT "stories".* FROM "stories" WHERE "stories"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/stories_controller.rb:30:in `edit'
+  Rendering layout layouts/application.html.erb
+  Rendering stories/edit.html.erb within layouts/application
+  [1m[36mDish Load (0.9ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/stories/edit.html.erb:3
+  [1m[36mDish Load (1.1ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes"[0m
+  ↳ app/views/stories/edit.html.erb:10
+  [1m[36mMediaItem Load (1.0ms)[0m  [1m[34mSELECT "media_items".* FROM "media_items" WHERE "media_items"."story_id" = $1 ORDER BY "media_items"."position" ASC[0m  [["story_id", 7]]
+  ↳ app/views/stories/edit.html.erb:28
+  Rendered dishes/_form_styles.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered stories/edit.html.erb within layouts/application (Duration: 8.6ms | Allocations: 3458)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 16.4ms | Allocations: 9508)
+Completed 200 OK in 20ms (Views: 13.8ms | ActiveRecord: 3.7ms | Allocations: 10626)
+
+
+Started PATCH "/stories/7" for ::1 at 2026-01-06 19:41:32 +0530
+Processing by StoriesController#update as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "story"=>{"dish_id"=>"7", "position"=>"2"}, "commit"=>"Update Story", "id"=>"7"}
+  [1m[36mStory Load (0.8ms)[0m  [1m[34mSELECT "stories".* FROM "stories" WHERE "stories"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/stories_controller.rb:35:in `update'
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/stories_controller.rb:36:in `update'
+  [1m[36mDish Load (1.2ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/stories_controller.rb:36:in `update'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/stories_controller.rb:36:in `update'
+Redirected to http://localhost:3000/stories/7/edit
+Completed 302 Found in 12ms (ActiveRecord: 4.4ms | Allocations: 3530)
+
+
+Started GET "/stories/7/edit" for ::1 at 2026-01-06 19:41:32 +0530
+Processing by StoriesController#edit as TURBO_STREAM
+  Parameters: {"id"=>"7"}
+  [1m[36mStory Load (0.6ms)[0m  [1m[34mSELECT "stories".* FROM "stories" WHERE "stories"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/stories_controller.rb:30:in `edit'
+  Rendering layout layouts/application.html.erb
+  Rendering stories/edit.html.erb within layouts/application
+  [1m[36mDish Load (0.9ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/stories/edit.html.erb:3
+  [1m[36mDish Load (1.0ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes"[0m
+  ↳ app/views/stories/edit.html.erb:10
+  [1m[36mMediaItem Load (0.4ms)[0m  [1m[34mSELECT "media_items".* FROM "media_items" WHERE "media_items"."story_id" = $1 ORDER BY "media_items"."position" ASC[0m  [["story_id", 7]]
+  ↳ app/views/stories/edit.html.erb:28
+  Rendered dishes/_form_styles.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered stories/edit.html.erb within layouts/application (Duration: 6.1ms | Allocations: 3458)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 12.0ms | Allocations: 9500)
+Completed 200 OK in 15ms (Views: 10.2ms | ActiveRecord: 2.9ms | Allocations: 10618)
+
+
+Started GET "/stories" for ::1 at 2026-01-06 19:41:34 +0530
+Processing by StoriesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering stories/index.html.erb within layouts/application
+  [1m[36mStory Exists? (1.1ms)[0m  [1m[34mSELECT 1 AS one FROM "stories" LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/views/stories/index.html.erb:8
+  [1m[36mStory Load (1.1ms)[0m  [1m[34mSELECT "stories".* FROM "stories" ORDER BY "stories"."position" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mDish Load (1.5ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1[0m  [["id", 6]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mRestaurant Load (1.8ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1[0m  [["id", 1]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mMediaItem Load (1.2ms)[0m  [1m[34mSELECT "media_items".* FROM "media_items" WHERE "media_items"."story_id" = $1 ORDER BY "media_items"."position" ASC[0m  [["story_id", 6]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mHotspot Load (1.2ms)[0m  [1m[34mSELECT "hotspots".* FROM "hotspots" WHERE "hotspots"."media_item_id" = $1[0m  [["media_item_id", 15]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mActiveStorage::Attachment Load (1.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 15], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  ↳ app/views/media_items/_media_item.html.erb:7
+  [1m[36mActiveStorage::Blob Load (1.4ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/media_items/_media_item.html.erb:8
+  Rendered media_items/_media_item.html.erb (Duration: 7.6ms | Allocations: 2363)
+  Rendered stories/_story.html.erb (Duration: 8.4ms | Allocations: 2673)
+  Rendered stories/index.html.erb within layouts/application (Duration: 27.1ms | Allocations: 8467)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 38.8ms | Allocations: 14516)
+Completed 200 OK in 42ms (Views: 29.2ms | ActiveRecord: 10.5ms | Allocations: 15139)
+
+
+Started GET "/stories" for ::1 at 2026-01-06 19:41:34 +0530
+Processing by StoriesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering stories/index.html.erb within layouts/application
+  [1m[36mStory Exists? (1.2ms)[0m  [1m[34mSELECT 1 AS one FROM "stories" LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/views/stories/index.html.erb:8
+  [1m[36mStory Load (1.0ms)[0m  [1m[34mSELECT "stories".* FROM "stories" ORDER BY "stories"."position" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mDish Load (1.2ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1[0m  [["id", 6]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mRestaurant Load (1.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1[0m  [["id", 1]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mMediaItem Load (1.0ms)[0m  [1m[34mSELECT "media_items".* FROM "media_items" WHERE "media_items"."story_id" = $1 ORDER BY "media_items"."position" ASC[0m  [["story_id", 6]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mHotspot Load (1.2ms)[0m  [1m[34mSELECT "hotspots".* FROM "hotspots" WHERE "hotspots"."media_item_id" = $1[0m  [["media_item_id", 15]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mActiveStorage::Attachment Load (1.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 15], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  ↳ app/views/media_items/_media_item.html.erb:7
+  [1m[36mActiveStorage::Blob Load (1.5ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/media_items/_media_item.html.erb:8
+  Rendered media_items/_media_item.html.erb (Duration: 7.2ms | Allocations: 2363)
+  Rendered stories/_story.html.erb (Duration: 7.8ms | Allocations: 2673)
+  Rendered stories/index.html.erb within layouts/application (Duration: 23.5ms | Allocations: 8467)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 33.2ms | Allocations: 14501)
+Completed 200 OK in 36ms (Views: 24.2ms | ActiveRecord: 9.6ms | Allocations: 15123)
+
+
+Started GET "/cart_items/count" for ::1 at 2026-01-06 19:41:34 +0530
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhPR2xvWTI4d01ubHRlbUU1WlRkamJUVnJhemM1ZG1ONGJtbGpaUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1SdmQyNXNiMkZrSUNVeU9ESWxNamt1YW5CbFp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25aRzkzYm14dllXUWxNakFsTWpneUpUSTVMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDI2LTAxLTA2VDE0OjE1OjE2LjgyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--869112e96457ba4cbf49f86a6f89130484f228f0/download%20(2).jpeg" for ::1 at 2026-01-06 19:41:34 +0530
+Processing by CartItemsController#count as */*
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"download (2)"}
+Completed 200 OK in 2ms (ActiveRecord: 0.0ms | Allocations: 499)
+
+
+  [1m[35m (4.0ms)[0m  [1m[34mSELECT SUM("cart_items"."quantity") FROM "cart_items" WHERE "cart_items"."session_id" = $1[0m  [["session_id", "02f0c87c4adbd8d5ad95a2e1da03ce78"]]
+  ↳ app/controllers/cart_items_controller.rb:39:in `cart_count'
+Completed 200 OK in 8ms (Views: 0.4ms | ActiveRecord: 4.0ms | Allocations: 1985)
+
+
+Started GET "/cart_items/count" for ::1 at 2026-01-06 19:41:34 +0530
+Processing by CartItemsController#count as */*
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT SUM("cart_items"."quantity") FROM "cart_items" WHERE "cart_items"."session_id" = $1[0m  [["session_id", "02f0c87c4adbd8d5ad95a2e1da03ce78"]]
+  ↳ app/controllers/cart_items_controller.rb:39:in `cart_count'
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.6ms | Allocations: 1224)
+
+
+Started GET "/dishes/new" for ::1 at 2026-01-06 19:41:44 +0530
+Processing by DishesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dishes/new.html.erb within layouts/application
+  [1m[36mRestaurant Load (1.6ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants"[0m
+  ↳ app/views/dishes/new.html.erb:21
+  Rendered dishes/new.html.erb within layouts/application (Duration: 8.8ms | Allocations: 2375)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 24.8ms | Allocations: 8425)
+Completed 200 OK in 26ms (Views: 23.9ms | ActiveRecord: 1.6ms | Allocations: 8870)
+
+
+Started GET "/dishes/new" for ::1 at 2026-01-06 19:41:44 +0530
+Processing by DishesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dishes/new.html.erb within layouts/application
+  [1m[36mRestaurant Load (1.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants"[0m
+  ↳ app/views/dishes/new.html.erb:21
+  Rendered dishes/new.html.erb within layouts/application (Duration: 5.9ms | Allocations: 2375)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 16.9ms | Allocations: 8417)
+Completed 200 OK in 18ms (Views: 16.4ms | ActiveRecord: 1.2ms | Allocations: 8862)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhPR2xvWTI4d01ubHRlbUU1WlRkamJUVnJhemM1ZG1ONGJtbGpaUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1SdmQyNXNiMkZrSUNVeU9ESWxNamt1YW5CbFp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25aRzkzYm14dllXUWxNakFsTWpneUpUSTVMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDI2LTAxLTA2VDE0OjE1OjE2LjgyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--869112e96457ba4cbf49f86a6f89130484f228f0/download%20(2).jpeg" for ::1 at 2026-01-06 19:41:44 +0530
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"download (2)"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 329)
+
+
+Started POST "/dishes" for ::1 at 2026-01-06 19:42:34 +0530
+Processing by DishesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "dish"=>{"restaurant_id"=>"1", "name"=>"Grilled Sandwich", "description"=>"mouth watering sandwich", "base_price"=>"150", "image"=>#<ActionDispatch::Http::UploadedFile:0x0000000136657160 @tempfile=#<Tempfile:/var/folders/8b/zqd54y5119q3mc7tcvzcb5m80000gp/T/RackMultipart20260106-49700-1krpkec.jpeg>, @original_filename="download (4).jpeg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"dish[image]\"; filename=\"download (4).jpeg\"\r\nContent-Type: image/jpeg\r\n">}, "commit"=>"Create Dish"}
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/dishes_controller.rb:9:in `create'
+  [1m[36mRestaurant Load (1.3ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/dishes_controller.rb:9:in `create'
+  [1m[36mDish Create (1.4ms)[0m  [1m[32mINSERT INTO "dishes" ("restaurant_id", "name", "description", "base_price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["restaurant_id", 1], ["name", "Grilled Sandwich"], ["description", "mouth watering sandwich"], ["base_price", "150.0"], ["created_at", "2026-01-06 14:12:34.198027"], ["updated_at", "2026-01-06 14:12:34.198027"]]
+  ↳ app/controllers/dishes_controller.rb:9:in `create'
+  [1m[36mActiveStorage::Blob Load (1.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 8], ["record_type", "Dish"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/dishes_controller.rb:9:in `create'
+  [1m[36mActiveStorage::Attachment Load (1.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 8], ["record_type", "Dish"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/dishes_controller.rb:9:in `create'
+  [1m[36mActiveStorage::Blob Create (3.7ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["key", "1tjvi7grabgfndlv9fcvvu2jxffb"], ["filename", "download (4).jpeg"], ["content_type", "image/jpeg"], ["metadata", "{\"identified\":true}"], ["service_name", "local"], ["byte_size", 10787], ["checksum", "m2cH2vJh5MNnYKrXKyyquQ=="], ["created_at", "2026-01-06 14:12:34.209555"]]
+  ↳ app/controllers/dishes_controller.rb:9:in `create'
+  [1m[36mActiveStorage::Attachment Create (0.8ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "image"], ["record_type", "Dish"], ["record_id", 8], ["blob_id", 4], ["created_at", "2026-01-06 14:12:34.217013"]]
+  ↳ app/controllers/dishes_controller.rb:9:in `create'
+  [1m[36mDish Update (0.7ms)[0m  [1m[33mUPDATE "dishes" SET "updated_at" = $1 WHERE "dishes"."id" = $2[0m  [["updated_at", "2026-01-06 14:12:34.218991"], ["id", 8]]
+  ↳ app/controllers/dishes_controller.rb:9:in `create'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/dishes_controller.rb:9:in `create'
+[36m  Disk Storage (3.1ms) [0m[32mUploaded file to key: 1tjvi7grabgfndlv9fcvvu2jxffb (checksum: m2cH2vJh5MNnYKrXKyyquQ==)[0m
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: 379242bb-ad66-49a3-bcea-6e5f6dd77858) to Async(default) with arguments: #<GlobalID:0x000000014183f940 @uri=#<URI::GID gid://tectonic-test/ActiveStorage::Blob/4>>
+Redirected to http://localhost:3000/stories/new?dish_id=8
+Completed 302 Found in 50ms (ActiveRecord: 12.5ms | Allocations: 12415)
+
+
+  [1m[36mActiveStorage::Blob Load (0.6ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [379242bb-ad66-49a3-bcea-6e5f6dd77858] Performing ActiveStorage::AnalyzeJob (Job ID: 379242bb-ad66-49a3-bcea-6e5f6dd77858) from Async(default) enqueued at 2026-01-06T14:12:34Z with arguments: #<GlobalID:0x0000000141069d38 @uri=#<URI::GID gid://tectonic-test/ActiveStorage::Blob/4>>
+Started GET "/stories/new?dish_id=8" for ::1 at 2026-01-06 19:42:34 +0530
+[ActiveJob] [ActiveStorage::AnalyzeJob] [379242bb-ad66-49a3-bcea-6e5f6dd77858] [36m  Disk Storage (0.5ms) [0m[34mDownloaded file from key: 1tjvi7grabgfndlv9fcvvu2jxffb[0m
+Processing by StoriesController#new as TURBO_STREAM
+  Parameters: {"dish_id"=>"8"}
+  [1m[36mDish Load (0.4ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/stories_controller.rb:15:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering stories/new.html.erb within layouts/application
+  [1m[36mDish Load (0.7ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes"[0m
+  ↳ app/views/stories/new.html.erb:21
+  Rendered dishes/_form_styles.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered stories/new.html.erb within layouts/application (Duration: 3.4ms | Allocations: 1637)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 17.0ms | Allocations: 7687)
+Completed 200 OK in 20ms (Views: 16.8ms | ActiveRecord: 1.1ms | Allocations: 8833)
+
+
+[ActiveJob] [ActiveStorage::AnalyzeJob] [379242bb-ad66-49a3-bcea-6e5f6dd77858]   [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [379242bb-ad66-49a3-bcea-6e5f6dd77858]   [1m[36mActiveStorage::Blob Update (0.5ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = $1 WHERE "active_storage_blobs"."id" = $2[0m  [["metadata", "{\"identified\":true,\"width\":225,\"height\":225,\"analyzed\":true}"], ["id", 4]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [379242bb-ad66-49a3-bcea-6e5f6dd77858]   [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [379242bb-ad66-49a3-bcea-6e5f6dd77858] Performed ActiveStorage::AnalyzeJob (Job ID: 379242bb-ad66-49a3-bcea-6e5f6dd77858) from Async(default) in 80.94ms
+Started POST "/stories" for ::1 at 2026-01-06 19:42:36 +0530
+Processing by StoriesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "story"=>{"dish_id"=>"8", "position"=>"3"}, "commit"=>"Create Story"}
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/stories_controller.rb:21:in `create'
+  [1m[36mDish Load (1.2ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/stories_controller.rb:21:in `create'
+  [1m[36mStory Create (1.6ms)[0m  [1m[32mINSERT INTO "stories" ("dish_id", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["dish_id", 8], ["position", 3], ["created_at", "2026-01-06 14:12:36.561551"], ["updated_at", "2026-01-06 14:12:36.561551"]]
+  ↳ app/controllers/stories_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/stories_controller.rb:21:in `create'
+Redirected to http://localhost:3000/stories/8/edit
+Completed 302 Found in 20ms (ActiveRecord: 5.0ms | Allocations: 3677)
+
+
+Started GET "/stories/8/edit" for ::1 at 2026-01-06 19:42:36 +0530
+Processing by StoriesController#edit as TURBO_STREAM
+  Parameters: {"id"=>"8"}
+  [1m[36mStory Load (0.7ms)[0m  [1m[34mSELECT "stories".* FROM "stories" WHERE "stories"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/stories_controller.rb:30:in `edit'
+  Rendering layout layouts/application.html.erb
+  Rendering stories/edit.html.erb within layouts/application
+  [1m[36mDish Load (1.1ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/views/stories/edit.html.erb:3
+  [1m[36mDish Load (1.1ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes"[0m
+  ↳ app/views/stories/edit.html.erb:10
+  [1m[36mMediaItem Load (1.9ms)[0m  [1m[34mSELECT "media_items".* FROM "media_items" WHERE "media_items"."story_id" = $1 ORDER BY "media_items"."position" ASC[0m  [["story_id", 8]]
+  ↳ app/views/stories/edit.html.erb:28
+  Rendered dishes/_form_styles.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered stories/edit.html.erb within layouts/application (Duration: 10.9ms | Allocations: 3501)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 19.9ms | Allocations: 9553)
+Completed 200 OK in 24ms (Views: 16.3ms | ActiveRecord: 4.8ms | Allocations: 10674)
+
+
+Started GET "/stories" for ::1 at 2026-01-06 19:42:38 +0530
+Processing by StoriesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering stories/index.html.erb within layouts/application
+  [1m[36mStory Exists? (1.8ms)[0m  [1m[34mSELECT 1 AS one FROM "stories" LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/views/stories/index.html.erb:8
+  [1m[36mStory Load (1.2ms)[0m  [1m[34mSELECT "stories".* FROM "stories" ORDER BY "stories"."position" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mDish Load (1.7ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1[0m  [["id", 6]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mRestaurant Load (1.7ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1[0m  [["id", 1]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mMediaItem Load (1.5ms)[0m  [1m[34mSELECT "media_items".* FROM "media_items" WHERE "media_items"."story_id" = $1 ORDER BY "media_items"."position" ASC[0m  [["story_id", 6]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mHotspot Load (1.8ms)[0m  [1m[34mSELECT "hotspots".* FROM "hotspots" WHERE "hotspots"."media_item_id" = $1[0m  [["media_item_id", 15]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mActiveStorage::Attachment Load (2.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 15], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  ↳ app/views/media_items/_media_item.html.erb:7
+  [1m[36mActiveStorage::Blob Load (1.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/media_items/_media_item.html.erb:8
+  Rendered media_items/_media_item.html.erb (Duration: 8.3ms | Allocations: 2363)
+  Rendered stories/_story.html.erb (Duration: 9.0ms | Allocations: 2673)
+  Rendered stories/index.html.erb within layouts/application (Duration: 30.7ms | Allocations: 8467)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 43.2ms | Allocations: 14518)
+Completed 200 OK in 46ms (Views: 31.2ms | ActiveRecord: 12.9ms | Allocations: 15141)
+
+
+Started GET "/stories" for ::1 at 2026-01-06 19:42:38 +0530
+Processing by StoriesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering stories/index.html.erb within layouts/application
+  [1m[36mStory Exists? (1.3ms)[0m  [1m[34mSELECT 1 AS one FROM "stories" LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/views/stories/index.html.erb:8
+  [1m[36mStory Load (1.0ms)[0m  [1m[34mSELECT "stories".* FROM "stories" ORDER BY "stories"."position" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mDish Load (1.3ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1[0m  [["id", 6]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mRestaurant Load (1.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1[0m  [["id", 1]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mMediaItem Load (1.0ms)[0m  [1m[34mSELECT "media_items".* FROM "media_items" WHERE "media_items"."story_id" = $1 ORDER BY "media_items"."position" ASC[0m  [["story_id", 6]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mHotspot Load (1.2ms)[0m  [1m[34mSELECT "hotspots".* FROM "hotspots" WHERE "hotspots"."media_item_id" = $1[0m  [["media_item_id", 15]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mActiveStorage::Attachment Load (1.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 15], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  ↳ app/views/media_items/_media_item.html.erb:7
+  [1m[36mActiveStorage::Blob Load (1.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/media_items/_media_item.html.erb:8
+  Rendered media_items/_media_item.html.erb (Duration: 5.7ms | Allocations: 2363)
+  Rendered stories/_story.html.erb (Duration: 6.3ms | Allocations: 2673)
+  Rendered stories/index.html.erb within layouts/application (Duration: 21.8ms | Allocations: 8467)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 29.5ms | Allocations: 14499)
+Completed 200 OK in 32ms (Views: 20.7ms | ActiveRecord: 9.3ms | Allocations: 15121)
+
+
+Started GET "/cart_items/count" for ::1 at 2026-01-06 19:42:38 +0530
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhPR2xvWTI4d01ubHRlbUU1WlRkamJUVnJhemM1ZG1ONGJtbGpaUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1SdmQyNXNiMkZrSUNVeU9ESWxNamt1YW5CbFp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25aRzkzYm14dllXUWxNakFsTWpneUpUSTVMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDI2LTAxLTA2VDE0OjE1OjE2LjgyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--869112e96457ba4cbf49f86a6f89130484f228f0/download%20(2).jpeg" for ::1 at 2026-01-06 19:42:38 +0530
+Processing by CartItemsController#count as */*
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"download (2)"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 497)
+
+
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT SUM("cart_items"."quantity") FROM "cart_items" WHERE "cart_items"."session_id" = $1[0m  [["session_id", "02f0c87c4adbd8d5ad95a2e1da03ce78"]]
+  ↳ app/controllers/cart_items_controller.rb:39:in `cart_count'
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 1.7ms | Allocations: 1856)
+
+
+Started GET "/cart_items/count" for ::1 at 2026-01-06 19:42:38 +0530
+Processing by CartItemsController#count as */*
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT SUM("cart_items"."quantity") FROM "cart_items" WHERE "cart_items"."session_id" = $1[0m  [["session_id", "02f0c87c4adbd8d5ad95a2e1da03ce78"]]
+  ↳ app/controllers/cart_items_controller.rb:39:in `cart_count'
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.6ms | Allocations: 1368)
+
+
+Started GET "/stories/6/media_items/new" for 127.0.0.1 at 2026-01-06 19:42:42 +0530
+Processing by MediaItemsController#new as HTML
+  Parameters: {"story_id"=>"6"}
+  [1m[36mStory Load (0.7ms)[0m  [1m[34mSELECT "stories".* FROM "stories" WHERE "stories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/media_items_controller.rb:7:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering media_items/new.html.erb within layouts/application
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "media_items" WHERE "media_items"."story_id" = $1[0m  [["story_id", 6]]
+  ↳ app/views/media_items/new.html.erb:33
+  Rendered dishes/_form_styles.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered media_items/new.html.erb within layouts/application (Duration: 5.8ms | Allocations: 1970)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 14.4ms | Allocations: 8023)
+Completed 200 OK in 19ms (Views: 12.9ms | ActiveRecord: 2.8ms | Allocations: 9538)
+
+
+Started GET "/stories/6/media_items/new" for 127.0.0.1 at 2026-01-06 19:42:42 +0530
+Processing by MediaItemsController#new as HTML
+  Parameters: {"story_id"=>"6"}
+  [1m[36mStory Load (0.8ms)[0m  [1m[34mSELECT "stories".* FROM "stories" WHERE "stories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/media_items_controller.rb:7:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering media_items/new.html.erb within layouts/application
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "media_items" WHERE "media_items"."story_id" = $1[0m  [["story_id", 6]]
+  ↳ app/views/media_items/new.html.erb:33
+  Rendered dishes/_form_styles.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered media_items/new.html.erb within layouts/application (Duration: 3.1ms | Allocations: 2046)
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhPR2xvWTI4d01ubHRlbUU1WlRkamJUVnJhemM1ZG1ONGJtbGpaUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1SdmQyNXNiMkZrSUNVeU9ESWxNamt1YW5CbFp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25aRzkzYm14dllXUWxNakFsTWpneUpUSTVMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDI2LTAxLTA2VDE0OjEzOjU2LjAyOVoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--28337ad13a3e85601750a865cbe7bf2a801648b0/download%20(2).jpeg" for 127.0.0.1 at 2026-01-06 19:42:42 +0530
+[Webpacker] Everything's up-to-date. Nothing to do
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"download (2)"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 555)
+
+
+  Rendered layout layouts/application.html.erb (Duration: 12.3ms | Allocations: 9968)
+Completed 200 OK in 16ms (Views: 11.7ms | ActiveRecord: 1.8ms | Allocations: 11655)
+
+
+Started GET "/stories/6/edit" for 127.0.0.1 at 2026-01-06 19:42:43 +0530
+Processing by StoriesController#edit as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mStory Load (0.9ms)[0m  [1m[34mSELECT "stories".* FROM "stories" WHERE "stories"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/stories_controller.rb:30:in `edit'
+  Rendering layout layouts/application.html.erb
+  Rendering stories/edit.html.erb within layouts/application
+  [1m[36mDish Load (1.5ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/stories/edit.html.erb:3
+  [1m[36mDish Load (1.1ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes"[0m
+  ↳ app/views/stories/edit.html.erb:10
+  [1m[36mMediaItem Load (1.1ms)[0m  [1m[34mSELECT "media_items".* FROM "media_items" WHERE "media_items"."story_id" = $1 ORDER BY "media_items"."position" ASC[0m  [["story_id", 6]]
+  ↳ app/views/stories/edit.html.erb:28
+  [1m[36mActiveStorage::Attachment Load (1.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 15], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  ↳ app/views/stories/edit.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.9ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/stories/edit.html.erb:33
+  Rendered dishes/_form_styles.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered stories/edit.html.erb within layouts/application (Duration: 17.4ms | Allocations: 5697)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 24.6ms | Allocations: 11747)
+Completed 200 OK in 30ms (Views: 19.6ms | ActiveRecord: 6.6ms | Allocations: 13062)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhPR2xvWTI4d01ubHRlbUU1WlRkamJUVnJhemM1ZG1ONGJtbGpaUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1SdmQyNXNiMkZrSUNVeU9ESWxNamt1YW5CbFp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25aRzkzYm14dllXUWxNakFsTWpneUpUSTVMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDI2LTAxLTA2VDE0OjEzOjU2LjAyOVoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--28337ad13a3e85601750a865cbe7bf2a801648b0/download%20(2).jpeg" for 127.0.0.1 at 2026-01-06 19:42:43 +0530
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"download (2)"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 328)
+
+
+Started GET "/stories/new?dish_id=6" for 127.0.0.1 at 2026-01-06 19:42:43 +0530
+Processing by StoriesController#new as HTML
+  Parameters: {"dish_id"=>"6"}
+  [1m[36mDish Load (1.1ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/stories_controller.rb:15:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering stories/new.html.erb within layouts/application
+  [1m[36mDish Load (1.3ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes"[0m
+  ↳ app/views/stories/new.html.erb:21
+  Rendered dishes/_form_styles.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered stories/new.html.erb within layouts/application (Duration: 4.9ms | Allocations: 1634)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 13.4ms | Allocations: 7665)
+Completed 200 OK in 24ms (Views: 12.8ms | ActiveRecord: 2.4ms | Allocations: 8919)
+
+
+Started GET "/stories/new?dish_id=6" for 127.0.0.1 at 2026-01-06 19:42:44 +0530
+Processing by StoriesController#new as HTML
+  Parameters: {"dish_id"=>"6"}
+  [1m[36mDish Load (0.7ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/stories_controller.rb:15:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering stories/new.html.erb within layouts/application
+  [1m[36mDish Load (1.1ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes"[0m
+  ↳ app/views/stories/new.html.erb:21
+  Rendered dishes/_form_styles.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered stories/new.html.erb within layouts/application (Duration: 4.6ms | Allocations: 2221)
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhPR2xvWTI4d01ubHRlbUU1WlRkamJUVnJhemM1ZG1ONGJtbGpaUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1SdmQyNXNiMkZrSUNVeU9ESWxNamt1YW5CbFp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25aRzkzYm14dllXUWxNakFsTWpneUpUSTVMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDI2LTAxLTA2VDE0OjEzOjU2LjAyOVoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--28337ad13a3e85601750a865cbe7bf2a801648b0/download%20(2).jpeg" for 127.0.0.1 at 2026-01-06 19:42:44 +0530
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"download (2)"}
+Completed 200 OK in 0ms (ActiveRecord: 0.0ms | Allocations: 335)
+
+
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 12.8ms | Allocations: 10894)
+Completed 200 OK in 16ms (Views: 12.0ms | ActiveRecord: 1.8ms | Allocations: 12825)
+
+
+Started GET "/dishes/new" for 127.0.0.1 at 2026-01-06 19:42:44 +0530
+Processing by DishesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dishes/new.html.erb within layouts/application
+  [1m[36mRestaurant Load (1.0ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants"[0m
+  ↳ app/views/dishes/new.html.erb:21
+  Rendered dishes/new.html.erb within layouts/application (Duration: 10.1ms | Allocations: 2416)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 19.4ms | Allocations: 8547)
+Completed 200 OK in 21ms (Views: 19.1ms | ActiveRecord: 1.0ms | Allocations: 9011)
+
+
+Started GET "/dishes/new" for 127.0.0.1 at 2026-01-06 19:42:44 +0530
+Processing by DishesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dishes/new.html.erb within layouts/application
+  [1m[36mRestaurant Load (1.0ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants"[0m
+  ↳ app/views/dishes/new.html.erb:21
+  Rendered dishes/new.html.erb within layouts/application (Duration: 5.2ms | Allocations: 2684)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 12.2ms | Allocations: 8872)
+Completed 200 OK in 14ms (Views: 12.2ms | ActiveRecord: 1.0ms | Allocations: 9405)
+
+
+Started GET "/" for 127.0.0.1 at 2026-01-06 19:42:44 +0530
+Processing by StoriesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering stories/index.html.erb within layouts/application
+  [1m[36mStory Exists? (1.2ms)[0m  [1m[34mSELECT 1 AS one FROM "stories" LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/views/stories/index.html.erb:8
+  [1m[36mStory Load (1.0ms)[0m  [1m[34mSELECT "stories".* FROM "stories" ORDER BY "stories"."position" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mDish Load (1.2ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1[0m  [["id", 6]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mRestaurant Load (1.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1[0m  [["id", 1]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mMediaItem Load (1.4ms)[0m  [1m[34mSELECT "media_items".* FROM "media_items" WHERE "media_items"."story_id" = $1 ORDER BY "media_items"."position" ASC[0m  [["story_id", 6]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mHotspot Load (1.1ms)[0m  [1m[34mSELECT "hotspots".* FROM "hotspots" WHERE "hotspots"."media_item_id" = $1[0m  [["media_item_id", 15]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mActiveStorage::Attachment Load (1.6ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 15], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  ↳ app/views/media_items/_media_item.html.erb:7
+  [1m[36mActiveStorage::Blob Load (1.0ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/media_items/_media_item.html.erb:8
+  Rendered media_items/_media_item.html.erb (Duration: 6.0ms | Allocations: 2362)
+  Rendered stories/_story.html.erb (Duration: 6.7ms | Allocations: 2672)
+  Rendered stories/index.html.erb within layouts/application (Duration: 23.7ms | Allocations: 8557)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 31.2ms | Allocations: 14608)
+Completed 200 OK in 34ms (Views: 22.1ms | ActiveRecord: 9.8ms | Allocations: 15249)
+
+
+Started GET "/cart_items/count" for 127.0.0.1 at 2026-01-06 19:42:44 +0530
+Processing by CartItemsController#count as */*
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhPR2xvWTI4d01ubHRlbUU1WlRkamJUVnJhemM1ZG1ONGJtbGpaUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1SdmQyNXNiMkZrSUNVeU9ESWxNamt1YW5CbFp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25aRzkzYm14dllXUWxNakFsTWpneUpUSTVMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDI2LTAxLTA2VDE0OjEzOjU2LjAyOVoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--28337ad13a3e85601750a865cbe7bf2a801648b0/download%20(2).jpeg" for 127.0.0.1 at 2026-01-06 19:42:44 +0530
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT SUM("cart_items"."quantity") FROM "cart_items" WHERE "cart_items"."session_id" = $1[0m  [["session_id", "b544845022bba6ab8563e53b0608bf52"]]
+  ↳ app/controllers/cart_items_controller.rb:39:in `cart_count'
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.9ms | Allocations: 1360)
+
+
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"download (2)"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 338)
+
+
+Started GET "/cart_items/count" for 127.0.0.1 at 2026-01-06 19:42:44 +0530
+Processing by CartItemsController#count as */*
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT SUM("cart_items"."quantity") FROM "cart_items" WHERE "cart_items"."session_id" = $1[0m  [["session_id", "b544845022bba6ab8563e53b0608bf52"]]
+  ↳ app/controllers/cart_items_controller.rb:39:in `cart_count'
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.6ms | Allocations: 1130)
+
+
+  [1m[36mStory Load (0.6ms)[0m  [1m[34mSELECT "stories".* FROM "stories" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Started GET "/cart_items" for 127.0.0.1 at 2026-01-06 19:43:31 +0530
+Processing by CartItemsController#index as HTML
+  Rendering layout /Users/apple/.rvm/gems/ruby-2.7.2/gems/turbo-rails-2.0.12/app/views/layouts/turbo_rails/frame.html.erb
+  Rendering cart_items/index.html.erb within layouts/turbo_rails/frame
+  [1m[36mCartItem Exists? (1.1ms)[0m  [1m[34mSELECT 1 AS one FROM "cart_items" WHERE "cart_items"."session_id" = $1 LIMIT $2[0m  [["session_id", "b544845022bba6ab8563e53b0608bf52"], ["LIMIT", 1]]
+  ↳ app/views/cart_items/index.html.erb:9
+  [1m[36mCACHE CartItem Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "cart_items" WHERE "cart_items"."session_id" = $1 LIMIT $2[0m  [["session_id", "b544845022bba6ab8563e53b0608bf52"], ["LIMIT", 1]]
+  ↳ app/views/cart_items/index.html.erb:46
+  Rendered cart_items/index.html.erb within layouts/turbo_rails/frame (Duration: 7.0ms | Allocations: 1997)
+  Rendered layout /Users/apple/.rvm/gems/ruby-2.7.2/gems/turbo-rails-2.0.12/app/views/layouts/turbo_rails/frame.html.erb (Duration: 7.7ms | Allocations: 2180)
+Completed 200 OK in 16ms (Views: 9.5ms | ActiveRecord: 1.1ms | Allocations: 3148)
+
+
+Started GET "/cart_items" for 127.0.0.1 at 2026-01-06 19:43:31 +0530
+Processing by CartItemsController#index as HTML
+  Rendering layout /Users/apple/.rvm/gems/ruby-2.7.2/gems/turbo-rails-2.0.12/app/views/layouts/turbo_rails/frame.html.erb
+  Rendering cart_items/index.html.erb within layouts/turbo_rails/frame
+  [1m[36mCartItem Exists? (6.7ms)[0m  [1m[34mSELECT 1 AS one FROM "cart_items" WHERE "cart_items"."session_id" = $1 LIMIT $2[0m  [["session_id", "b544845022bba6ab8563e53b0608bf52"], ["LIMIT", 1]]
+  ↳ app/views/cart_items/index.html.erb:9
+  [1m[36mCACHE CartItem Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "cart_items" WHERE "cart_items"."session_id" = $1 LIMIT $2[0m  [["session_id", "b544845022bba6ab8563e53b0608bf52"], ["LIMIT", 1]]
+  ↳ app/views/cart_items/index.html.erb:46
+  Rendered cart_items/index.html.erb within layouts/turbo_rails/frame (Duration: 12.8ms | Allocations: 1439)
+  Rendered layout /Users/apple/.rvm/gems/ruby-2.7.2/gems/turbo-rails-2.0.12/app/views/layouts/turbo_rails/frame.html.erb (Duration: 13.0ms | Allocations: 1515)
+Completed 200 OK in 15ms (Views: 6.9ms | ActiveRecord: 6.7ms | Allocations: 1967)
+
+
+Started GET "/cart_items" for 127.0.0.1 at 2026-01-06 19:43:31 +0530
+Processing by CartItemsController#index as HTML
+  Rendering layout /Users/apple/.rvm/gems/ruby-2.7.2/gems/turbo-rails-2.0.12/app/views/layouts/turbo_rails/frame.html.erb
+  Rendering cart_items/index.html.erb within layouts/turbo_rails/frame
+  [1m[36mCartItem Exists? (1.1ms)[0m  [1m[34mSELECT 1 AS one FROM "cart_items" WHERE "cart_items"."session_id" = $1 LIMIT $2[0m  [["session_id", "b544845022bba6ab8563e53b0608bf52"], ["LIMIT", 1]]
+  ↳ app/views/cart_items/index.html.erb:9
+  [1m[36mCACHE CartItem Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "cart_items" WHERE "cart_items"."session_id" = $1 LIMIT $2[0m  [["session_id", "b544845022bba6ab8563e53b0608bf52"], ["LIMIT", 1]]
+  ↳ app/views/cart_items/index.html.erb:46
+  Rendered cart_items/index.html.erb within layouts/turbo_rails/frame (Duration: 5.6ms | Allocations: 1438)
+  Rendered layout /Users/apple/.rvm/gems/ruby-2.7.2/gems/turbo-rails-2.0.12/app/views/layouts/turbo_rails/frame.html.erb (Duration: 5.8ms | Allocations: 1514)
+Completed 200 OK in 7ms (Views: 5.3ms | ActiveRecord: 1.1ms | Allocations: 1965)
+
+
+Started GET "/stories/new" for ::1 at 2026-01-06 19:44:12 +0530
+Processing by StoriesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering stories/new.html.erb within layouts/application
+  [1m[36mDish Load (1.3ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes"[0m
+  ↳ app/views/stories/new.html.erb:21
+  Rendered dishes/_form_styles.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered stories/new.html.erb within layouts/application (Duration: 12.2ms | Allocations: 1844)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 43.1ms | Allocations: 7899)
+Completed 200 OK in 47ms (Views: 42.7ms | ActiveRecord: 1.3ms | Allocations: 8353)
+
+
+Started GET "/stories/new" for ::1 at 2026-01-06 19:44:12 +0530
+Processing by StoriesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering stories/new.html.erb within layouts/application
+  [1m[36mDish Load (0.4ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes"[0m
+  ↳ app/views/stories/new.html.erb:21
+  Rendered dishes/_form_styles.html.erb (Duration: 0.0ms | Allocations: 37)
+  Rendered stories/new.html.erb within layouts/application (Duration: 2.1ms | Allocations: 1835)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 6.6ms | Allocations: 7883)
+Completed 200 OK in 8ms (Views: 6.5ms | ActiveRecord: 0.4ms | Allocations: 8336)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhPR2xvWTI4d01ubHRlbUU1WlRkamJUVnJhemM1ZG1ONGJtbGpaUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1SdmQyNXNiMkZrSUNVeU9ESWxNamt1YW5CbFp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25aRzkzYm14dllXUWxNakFsTWpneUpUSTVMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDI2LTAxLTA2VDE0OjE1OjE2LjgyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--869112e96457ba4cbf49f86a6f89130484f228f0/download%20(2).jpeg" for ::1 at 2026-01-06 19:44:12 +0530
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"download (2)"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 330)
+
+
+Started POST "/stories" for ::1 at 2026-01-06 19:44:16 +0530
+Processing by StoriesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "story"=>{"dish_id"=>"7", "position"=>"2"}, "commit"=>"Create Story"}
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/stories_controller.rb:21:in `create'
+  [1m[36mDish Load (0.9ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/stories_controller.rb:21:in `create'
+  [1m[36mStory Create (1.7ms)[0m  [1m[32mINSERT INTO "stories" ("dish_id", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["dish_id", 7], ["position", 2], ["created_at", "2026-01-06 14:14:16.590821"], ["updated_at", "2026-01-06 14:14:16.590821"]]
+  ↳ app/controllers/stories_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (2.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/stories_controller.rb:21:in `create'
+Redirected to http://localhost:3000/stories/9/edit
+Completed 302 Found in 15ms (ActiveRecord: 6.5ms | Allocations: 3680)
+
+
+Started GET "/stories/9/edit" for ::1 at 2026-01-06 19:44:16 +0530
+Processing by StoriesController#edit as TURBO_STREAM
+  Parameters: {"id"=>"9"}
+  [1m[36mStory Load (0.7ms)[0m  [1m[34mSELECT "stories".* FROM "stories" WHERE "stories"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/stories_controller.rb:30:in `edit'
+  Rendering layout layouts/application.html.erb
+  Rendering stories/edit.html.erb within layouts/application
+  [1m[36mDish Load (1.5ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/stories/edit.html.erb:3
+  [1m[36mDish Load (1.2ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes"[0m
+  ↳ app/views/stories/edit.html.erb:10
+  [1m[36mMediaItem Load (1.2ms)[0m  [1m[34mSELECT "media_items".* FROM "media_items" WHERE "media_items"."story_id" = $1 ORDER BY "media_items"."position" ASC[0m  [["story_id", 9]]
+  ↳ app/views/stories/edit.html.erb:28
+  Rendered dishes/_form_styles.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered stories/edit.html.erb within layouts/application (Duration: 11.2ms | Allocations: 3503)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 20.6ms | Allocations: 9553)
+Completed 200 OK in 25ms (Views: 17.5ms | ActiveRecord: 4.6ms | Allocations: 10672)
+
+
+Started PATCH "/stories/9" for ::1 at 2026-01-06 19:44:17 +0530
+Processing by StoriesController#update as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "story"=>{"dish_id"=>"7", "position"=>"2"}, "commit"=>"Update Story", "id"=>"9"}
+  [1m[36mStory Load (0.7ms)[0m  [1m[34mSELECT "stories".* FROM "stories" WHERE "stories"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/stories_controller.rb:35:in `update'
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/stories_controller.rb:36:in `update'
+  [1m[36mDish Load (1.2ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/stories_controller.rb:36:in `update'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/stories_controller.rb:36:in `update'
+Redirected to http://localhost:3000/stories/9/edit
+Completed 302 Found in 14ms (ActiveRecord: 4.8ms | Allocations: 3531)
+
+
+Started GET "/stories/9/edit" for ::1 at 2026-01-06 19:44:17 +0530
+Processing by StoriesController#edit as TURBO_STREAM
+  Parameters: {"id"=>"9"}
+  [1m[36mStory Load (0.8ms)[0m  [1m[34mSELECT "stories".* FROM "stories" WHERE "stories"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/stories_controller.rb:30:in `edit'
+  Rendering layout layouts/application.html.erb
+  Rendering stories/edit.html.erb within layouts/application
+  [1m[36mDish Load (1.2ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/stories/edit.html.erb:3
+  [1m[36mDish Load (1.5ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes"[0m
+  ↳ app/views/stories/edit.html.erb:10
+  [1m[36mMediaItem Load (1.5ms)[0m  [1m[34mSELECT "media_items".* FROM "media_items" WHERE "media_items"."story_id" = $1 ORDER BY "media_items"."position" ASC[0m  [["story_id", 9]]
+  ↳ app/views/stories/edit.html.erb:28
+  Rendered dishes/_form_styles.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered stories/edit.html.erb within layouts/application (Duration: 12.0ms | Allocations: 3501)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 20.9ms | Allocations: 9532)
+Completed 200 OK in 26ms (Views: 17.6ms | ActiveRecord: 4.9ms | Allocations: 10650)
+
+
+Started GET "/" for ::1 at 2026-01-06 19:44:21 +0530
+Processing by StoriesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering stories/index.html.erb within layouts/application
+  [1m[36mStory Exists? (1.4ms)[0m  [1m[34mSELECT 1 AS one FROM "stories" LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/views/stories/index.html.erb:8
+  [1m[36mStory Load (2.2ms)[0m  [1m[34mSELECT "stories".* FROM "stories" ORDER BY "stories"."position" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mDish Load (1.9ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" WHERE "dishes"."id" = $1[0m  [["id", 6]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mRestaurant Load (1.6ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = $1[0m  [["id", 1]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mMediaItem Load (1.3ms)[0m  [1m[34mSELECT "media_items".* FROM "media_items" WHERE "media_items"."story_id" = $1 ORDER BY "media_items"."position" ASC[0m  [["story_id", 6]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mHotspot Load (1.4ms)[0m  [1m[34mSELECT "hotspots".* FROM "hotspots" WHERE "hotspots"."media_item_id" = $1[0m  [["media_item_id", 15]]
+  ↳ app/views/stories/index.html.erb:9
+  [1m[36mActiveStorage::Attachment Load (5.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 15], ["record_type", "MediaItem"], ["name", "file"], ["LIMIT", 1]]
+  ↳ app/views/media_items/_media_item.html.erb:7
+  [1m[36mActiveStorage::Blob Load (1.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/media_items/_media_item.html.erb:8
+  Rendered media_items/_media_item.html.erb (Duration: 13.6ms | Allocations: 2368)
+  Rendered stories/_story.html.erb (Duration: 15.2ms | Allocations: 2679)
+  Rendered stories/index.html.erb within layouts/application (Duration: 44.8ms | Allocations: 8476)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 52.6ms | Allocations: 14527)
+Completed 200 OK in 57ms (Views: 37.0ms | ActiveRecord: 16.5ms | Allocations: 15147)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhPR2xvWTI4d01ubHRlbUU1WlRkamJUVnJhemM1ZG1ONGJtbGpaUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1SdmQyNXNiMkZrSUNVeU9ESWxNamt1YW5CbFp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25aRzkzYm14dllXUWxNakFsTWpneUpUSTVMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDI2LTAxLTA2VDE0OjE1OjE2LjgyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--869112e96457ba4cbf49f86a6f89130484f228f0/download%20(2).jpeg" for ::1 at 2026-01-06 19:44:21 +0530
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"download (2)"}
+Completed 200 OK in 5ms (ActiveRecord: 0.0ms | Allocations: 328)
+
+
+Started GET "/cart_items/count" for ::1 at 2026-01-06 19:44:21 +0530
+Processing by CartItemsController#count as */*
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT SUM("cart_items"."quantity") FROM "cart_items" WHERE "cart_items"."session_id" = $1[0m  [["session_id", "02f0c87c4adbd8d5ad95a2e1da03ce78"]]
+  ↳ app/controllers/cart_items_controller.rb:39:in `cart_count'
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.8ms | Allocations: 1037)
+
+
+Started GET "/cart_items/count" for ::1 at 2026-01-06 19:44:21 +0530
+Processing by CartItemsController#count as */*
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT SUM("cart_items"."quantity") FROM "cart_items" WHERE "cart_items"."session_id" = $1[0m  [["session_id", "02f0c87c4adbd8d5ad95a2e1da03ce78"]]
+  ↳ app/controllers/cart_items_controller.rb:39:in `cart_count'
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.9ms | Allocations: 1039)
+
+
+Started GET "/sw.js" for ::1 at 2026-01-06 19:44:23 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/sw.js"):
+  

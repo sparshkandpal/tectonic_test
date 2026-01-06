@@ -1,0 +1,126 @@
+<div class="admin-container">
+  <div class="admin-header">
+    <h1>Edit Story: <%= @story.dish.name %></h1>
+    <%= link_to 'Back to Stories', stories_path, class: 'back-link' %>
+  </div>
+
+  <%= form_with model: @story, local: true, class: 'story-form' do |form| %>
+    <div class="form-group">
+      <%= form.label :dish_id, "Dish" %>
+      <%= form.collection_select :dish_id, @dishes, :id, :name, {}, { class: 'form-control' } %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :position %>
+      <%= form.number_field :position, class: 'form-control' %>
+    </div>
+
+    <div class="form-actions">
+      <%= form.submit 'Update Story', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+
+  <div class="media-items-section">
+    <h2>Media Items</h2>
+    <%= link_to 'Add Media Item', new_story_media_item_path(@story), class: 'btn btn-secondary' %>
+    
+    <div class="media-items-list">
+      <% @story.media_items.order(:position).each do |media_item| %>
+        <div class="media-item-card">
+          <div class="media-preview">
+            <% if media_item.file.attached? %>
+              <% if media_item.image? %>
+                <%= image_tag media_item.file, style: 'max-width: 150px; max-height: 150px; object-fit: cover;' %>
+              <% else %>
+                <div class="video-placeholder">Video</div>
+              <% end %>
+            <% else %>
+              <div class="no-media">No media attached</div>
+            <% end %>
+          </div>
+          <div class="media-info">
+            <p><strong>Type:</strong> <%= media_item.media_type %></p>
+            <p><strong>Position:</strong> <%= media_item.position %></p>
+            <p><strong>Duration:</strong> <%= media_item.duration %>ms</p>
+          </div>
+          <div class="media-actions">
+            <%= link_to 'Edit', edit_story_media_item_path(@story, media_item), class: 'btn btn-small' %>
+            <%= link_to 'Delete', story_media_item_path(@story, media_item), method: :delete, 
+                confirm: 'Are you sure?', class: 'btn btn-small btn-danger' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= render 'dishes/form_styles' %>
+
+<style>
+.media-items-section {
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 2px solid #eee;
+}
+
+.media-items-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.media-item-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  background: #f9f9f9;
+}
+
+.media-preview {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.video-placeholder, .no-media {
+  padding: 40px;
+  background: #eee;
+  border-radius: 4px;
+  color: #666;
+}
+
+.media-info p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.media-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.btn-small {
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
+.btn-secondary {
+  background: #6c757d;
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background: #5a6268;
+}
+
+.btn-danger {
+  background: #dc3545;
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background: #c82333;
+}
+</style>
+

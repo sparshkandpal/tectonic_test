@@ -1,3 +1,8 @@
+<div class="admin-links" style="position: fixed; top: 10px; left: 10px; z-index: 1000; background: rgba(255,255,255,0.9); padding: 10px; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+  <%= link_to '➕ Add Dish', new_dish_path, style: 'margin-right: 10px; color: #007bff; text-decoration: none;' %>
+  <%= link_to '📖 Add Story', new_story_path, style: 'color: #007bff; text-decoration: none;' %>
+</div>
+
 <div class="story-feed-container" data-controller="story-feed" data-story-feed-current-index-value="0">
   <%= turbo_frame_tag "story_feed" do %>
     <% if @stories.any? %>
@@ -5,6 +10,7 @@
     <% else %>
       <div class="no-stories">
         <p>No stories available</p>
+        <p><%= link_to 'Create your first dish and story', new_dish_path, style: 'color: #007bff;' %></p>
       </div>
     <% end %>
   <% end %>

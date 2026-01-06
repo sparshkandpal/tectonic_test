@@ -1,15 +1,14 @@
 Rails.application.routes.draw do
   root 'stories#index'
 
-  resources :stories, only: [:index, :show] do
+  resources :stories, only: [:index, :show, :new, :create, :edit, :update] do
     member do
       post :save_progress
       get :get_progress
     end
-  end
-
-  resources :media_items, only: [:show] do
-    resources :hotspots, only: [:index]
+    resources :media_items, only: [:new, :create, :edit, :update, :destroy, :show] do
+      resources :hotspots, only: [:index]
+    end
   end
 
   resources :ingredients, only: [:show] do
@@ -25,7 +24,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :dishes, only: [] do
+  resources :dishes, only: [:new, :create, :edit, :update] do
     member do
       get :customization_panel
     end
