@@ -14,6 +14,9 @@
           <div class="ingredient-info">
             <h4><%= dish_ingredient.ingredient.name %></h4>
             <span class="default-quantity">Default: <%= dish_ingredient.default_quantity %></span>
+            <% if dish_ingredient.extra_cost > 0 %>
+              <span class="extra-cost">+<%= number_to_currency(dish_ingredient.extra_cost) %> per extra</span>
+            <% end %>
           </div>
 
           <% if dish_ingredient.is_customizable %>
@@ -21,16 +24,21 @@
               <button class="quantity-btn minus" 
                       data-action="click->customization-panel#updateQuantity"
                       data-customization-panel-ingredient-id-value="<%= dish_ingredient.ingredient_id %>"
-                      data-delta="-1">−</button>
+                      data-delta="-0.1">−</button>
               <span class="quantity-display" 
                     data-customization-panel-target="quantityDisplay"
-                    data-ingredient-id="<%= dish_ingredient.ingredient_id %>">
+                    data-ingredient-id="<%= dish_ingredient.ingredient_id %>"
+                    data-default-quantity="<%= dish_ingredient.default_quantity %>">
                 <%= dish_ingredient.default_quantity %>
               </span>
               <button class="quantity-btn plus" 
                       data-action="click->customization-panel#updateQuantity"
                       data-customization-panel-ingredient-id-value="<%= dish_ingredient.ingredient_id %>"
-                      data-delta="1">+</button>
+                      data-delta="0.1">+</button>
+              <button class="remove-btn" 
+                      data-action="click->customization-panel#removeIngredient"
+                      data-customization-panel-ingredient-id-value="<%= dish_ingredient.ingredient_id %>"
+                      title="Remove ingredient">×</button>
             </div>
 
             <% substitutions = dish_ingredient.ingredient.substitutions.includes(:substitute_ingredient) %>

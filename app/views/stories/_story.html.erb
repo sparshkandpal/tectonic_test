@@ -1,8 +1,19 @@
 <div class="story-viewer" 
-     data-controller="story-viewer media-player hotspot-manager" 
+     data-controller="story-viewer media-player" 
      data-story-viewer-story-id-value="<%= story.id %>"
      data-story-viewer-current-media-index-value="0">
   
+  <!-- Header with Restaurant Name -->
+  <div class="story-header">
+    <button class="back-btn" data-action="click->story-viewer#goBack">←</button>
+    <div class="restaurant-name" 
+         data-controller="restaurant-switcher"
+         data-restaurant-switcher-restaurant-id-value="<%= story.restaurant.id %>">
+      <%= story.restaurant.name %>
+    </div>
+    <button class="close-btn" data-action="click->story-viewer#closeStory">×</button>
+  </div>
+
   <!-- Progress Bar -->
   <div class="progress-bar-container">
     <% story.media_items.each_with_index do |media_item, index| %>
@@ -51,32 +62,113 @@
   </div>
 
   <!-- Bottom Action Bar -->
-  <div class="bottom-action-bar" data-controller="cart" data-cart-dish-id-value="<%= story.dish.id %>">
-    <button class="add-to-cart-btn" 
-            data-action="click->cart#addToCart">
-      Add to Cart
-    </button>
-  </div>
+  <% dish = story.dish || story.restaurant.dishes.first %>
+  <% if dish.nil? %>
+    <div class="bottom-action-bar">
+      <p style="color: white; padding: 20px; text-align: center;">No dish available for customization. Please add a dish to this story.</p>
+    </div>
+  <% else %>
+    <div class="bottom-action-bar" 
+         data-controller="cart" 
+         data-cart-dish-id-value="<%= dish.id %>">
+      <div class="bottom-actions-left">
+        <button class="customize-btn" 
+                onclick="console.log('Customize clicked, dishId:', <%= dish.id %>); window.openCustomizationPanel(<%= dish.id %>);">
+          Customize
+        </button>
+        <button class="add-extra-btn"
+                onclick="console.log('Add Extra clicked, dishId:', <%= dish.id %>); window.openCustomizationPanel(<%= dish.id %>);">
+          Add Extra
+        </button>
+      </div>
+      <div class="bottom-actions-right">
+        <div class="modifications-info" data-customization-panel-target="modificationsInfo" style="display: none;">
+          <span data-customization-panel-target="modificationsCount">0</span> modifications — 
+          <span data-customization-panel-target="modificationsPrice">$0.00</span>
+        </div>
+        <button class="add-to-cart-btn" 
+                data-action="click->cart#addToCart">
+          Add to Cart
+        </button>
+      </div>
+    </div>
+  <% end %>
 </div>
 
 <!-- Ingredient Card Modal -->
-<div class="ingredient-card-modal" 
-     data-hotspot-manager-target="modal"
-     data-action="click->hotspot-manager#closeCard">
-  <div class="ingredient-card-content" data-action="click->stop">
-    <%= turbo_frame_tag "ingredient_card" do %>
-      <!-- Content loaded dynamically -->
-    <% end %>
+<div class="ingredient-card-modal-wrapper" data-controller="hotspot-manager">
+  <div class="ingredient-card-modal" 
+       data-hotspot-manager-target="modal"
+       data-action="click->hotspot-manager#closeCard">
+    <div class="ingredient-card-content" data-action="click->stop">
+      <%= turbo_frame_tag "ingredient_card" do %>
+        <!-- Content loaded dynamically -->
+      <% end %>
+    </div>
   </div>
 </div>
 
 <!-- Customization Panel -->
-<div class="customization-panel" 
-     data-controller="customization-panel"
-     data-customization-panel-dish-id-value="<%= story.dish.id %>"
-     data-customization-panel-target="panel">
-  <%= turbo_frame_tag "customization_panel" do %>
-    <!-- Content loaded dynamically -->
-  <% end %>
-</div>
+<% dish = story.dish || story.restaurant.dishes.first %>
+<% if dish %>
+  <div class="customization-panel" 
+       data-controller="customization-panel"
+       data-customization-panel-dish-id-value="<%= dish.id %>"
+       data-customization-panel-target="panel">
+    <%= turbo_frame_tag "customization_panel" do %>
+      <!-- Content loaded dynamically -->
+    <% end %>
+  </div>
+<% end %>
 
+<script>
+// Global function to open customization panel
+window.openCustomizationPanel = function(dishId) {
+  console.log('openCustomizationPanel called with dishId:', dishId);
+  const panel = document.querySelector('[data-customization-panel-target="panel"]');
+  console.log('Found panel:', panel);
+  
+  if (!panel) {
+    console.error('Panel not found!');
+    alert('Customization panel not found. Please refresh the page.');
+    return;
+  }
+  
+  if (!dishId) {
+    console.error('No dishId provided!');
+    alert('No dish ID provided.');
+    return;
+  }
+  
+  console.log('Fetching customization panel for dish:', dishId);
+  fetch(`/dishes/${dishId}/customization_panel`)
+    .then(response => {
+      console.log('Response status:', response.status);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(html => {
+      console.log('Received HTML, length:', html.length);
+      const frame = panel.querySelector('turbo-frame');
+      console.log('Found turbo-frame:', frame);
+      if (frame && html.length > 0) {
+        frame.innerHTML = html;
+        console.log('HTML inserted into frame');
+      } else if (html.length === 0) {
+        console.warn('Received empty HTML response - this might be a 204 No Content');
+        // Try to load the partial directly
+        frame.innerHTML = '<div class="customization-panel-content"><p>Loading...</p></div>';
+      }
+      panel.classList.add('active');
+      console.log('Panel opened successfully! Panel classes:', panel.className);
+      console.log('Panel computed style:', window.getComputedStyle(panel).transform);
+      console.log('Panel z-index:', window.getComputedStyle(panel).zIndex);
+    })
+    .catch(err => {
+      console.error('Error loading panel:', err);
+      alert('Failed to load customization panel: ' + err.message);
+    });
+};
+</script>

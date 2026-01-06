@@ -285,30 +285,35 @@ DishIngredient.create!(
   extra_cost: 1.00
 )
 
-# Create Stories
+# Create Stories (belonging to restaurants)
 story1 = Story.create!(
+  restaurant: restaurant1,
   dish: dish1,
   position: 1
 )
 
 story2 = Story.create!(
+  restaurant: restaurant2,
   dish: dish2,
   position: 1
 )
 
 story3 = Story.create!(
+  restaurant: restaurant3,
   dish: dish3,
   position: 1
 )
 
 story4 = Story.create!(
+  restaurant: restaurant1,
   dish: dish4,
-  position: 1
+  position: 2
 )
 
 story5 = Story.create!(
+  restaurant: restaurant2,
   dish: dish5,
-  position: 1
+  position: 2
 )
 
 # Create Media Items for Story 1 (Butter Chicken)

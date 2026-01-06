@@ -1,13 +1,27 @@
 class StoriesController < ApplicationController
   def index
-    @stories = Story.includes(dish: :restaurant, media_items: [:hotspots, { hotspots: :ingredient }]).ordered
+    @restaurants = Restaurant.includes(:stories).where(id: Story.select(:restaurant_id).distinct)
+    @current_restaurant_id = params[:restaurant_id] || @restaurants.first&.id
+    
+    if @current_restaurant_id
+      @current_restaurant = Restaurant.find(@current_restaurant_id)
+      @stories = @current_restaurant.stories
+        .includes(:restaurant, media_items: [:hotspots, { hotspots: :ingredient }])
+        .recent
+        .ordered
+    else
+      @stories = Story.none
+    end
   end
 
   def show
     @story = Story.includes(
-      dish: [:restaurant, :dish_ingredients, { dish_ingredients: :ingredient }],
+      :restaurant,
       media_items: [:hotspots, { hotspots: :ingredient }]
     ).find(params[:id])
+    
+    # Get dish for customization (first dish of restaurant or story's dish if exists)
+    @dish = @story.dish || @story.restaurant.dishes.first
   end
 
   def new
@@ -28,7 +42,7 @@ class StoriesController < ApplicationController
 
   def edit
     @story = Story.find(params[:id])
-    @dishes = Dish.all
+    @restaurants = Restaurant.all
   end
 
   def update
@@ -36,7 +50,7 @@ class StoriesController < ApplicationController
     if @story.update(story_params)
       redirect_to edit_story_path(@story), notice: 'Story was successfully updated.'
     else
-      @dishes = Dish.all
+      @restaurants = Restaurant.all
       render :edit
     end
   end
@@ -57,6 +71,6 @@ class StoriesController < ApplicationController
   private
 
   def story_params
-    params.require(:story).permit(:dish_id, :position)
+    params.require(:story).permit(:restaurant_id, :dish_id, :position)
   end
 end

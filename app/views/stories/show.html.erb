@@ -1,0 +1,4 @@
+<%= turbo_frame_tag "story_feed" do %>
+  <%= render partial: "story", locals: { story: @story, dish: @dish } %>
+<% end %>
+

@@ -1,13 +1,19 @@
 <div class="admin-container">
   <div class="admin-header">
-    <h1>Edit Story: <%= @story.dish.name %></h1>
+    <h1>Edit Story: <%= @story.restaurant.name %></h1>
     <%= link_to 'Back to Stories', stories_path, class: 'back-link' %>
   </div>
 
   <%= form_with model: @story, local: true, class: 'story-form' do |form| %>
     <div class="form-group">
-      <%= form.label :dish_id, "Dish" %>
-      <%= form.collection_select :dish_id, @dishes, :id, :name, {}, { class: 'form-control' } %>
+      <%= form.label :restaurant_id, "Restaurant" %>
+      <%= form.collection_select :restaurant_id, @restaurants, :id, :name, {}, { class: 'form-control' } %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :dish_id, "Dish (Optional - for customization)" %>
+      <%= form.collection_select :dish_id, Dish.all, :id, :name, { include_blank: "None" }, { class: 'form-control' } %>
+      <small class="form-text">Optional: Link a dish for customization features</small>
     </div>
 
     <div class="form-group">

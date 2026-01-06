@@ -51,6 +51,29 @@
       <%= form.submit 'Update Dish', class: 'btn btn-primary' %>
     </div>
   <% end %>
+
+  <div class="dish-ingredients-section">
+    <h2>Dish Ingredients</h2>
+    <%= link_to 'Add Ingredient', new_dish_dish_ingredient_path(@dish), class: 'btn btn-secondary' %>
+    
+    <div class="ingredients-list">
+      <% @dish.dish_ingredients.includes(:ingredient).each do |dish_ingredient| %>
+        <div class="ingredient-item">
+          <div class="ingredient-info">
+            <h4><%= dish_ingredient.ingredient.name %></h4>
+            <p>Default Quantity: <%= dish_ingredient.default_quantity %></p>
+            <p>Customizable: <%= dish_ingredient.is_customizable ? 'Yes' : 'No' %></p>
+            <p>Extra Cost: <%= number_to_currency(dish_ingredient.extra_cost) %></p>
+          </div>
+          <div class="ingredient-actions">
+            <%= link_to 'Edit', edit_dish_dish_ingredient_path(@dish, dish_ingredient), class: 'btn btn-small' %>
+            <%= link_to 'Remove', dish_dish_ingredient_path(@dish, dish_ingredient), method: :delete, 
+                confirm: 'Are you sure?', class: 'btn btn-small btn-danger' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
 
 <%= render 'dishes/form_styles' %>

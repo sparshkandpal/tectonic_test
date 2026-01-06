@@ -31,6 +31,7 @@ class DishesController < ApplicationController
 
   def customization_panel
     @dish = Dish.includes(:dish_ingredients, dish_ingredients: :ingredient).find(params[:id])
+    render partial: 'dishes/customization_panel', locals: { dish: @dish }
   end
 
   private

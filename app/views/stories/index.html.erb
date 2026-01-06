@@ -3,16 +3,82 @@
   <%= link_to '📖 Add Story', new_story_path, style: 'color: #007bff; text-decoration: none;' %>
 </div>
 
-<div class="story-feed-container" data-controller="story-feed" data-story-feed-current-index-value="0">
+<% if @restaurants.any? %>
+  <!-- Restaurant Switcher -->
+  <div class="restaurant-switcher" 
+       data-controller="restaurant-switcher"
+       data-restaurant-switcher-current-restaurant-id-value="<%= @current_restaurant_id %>">
+    <div class="restaurant-list">
+      <% @restaurants.each do |restaurant| %>
+        <button class="restaurant-btn <%= 'active' if restaurant.id == @current_restaurant_id %>"
+                data-action="click->restaurant-switcher#switchRestaurant"
+                data-restaurant-switcher-restaurant-id-value="<%= restaurant.id %>">
+          <%= restaurant.name %>
+        </button>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<div class="story-feed-container" 
+     data-controller="story-feed" 
+     data-story-feed-current-index-value="0"
+     data-story-feed-stories-value="<%= @stories.map(&:id).to_json %>"
+     data-story-feed-restaurant-id-value="<%= @current_restaurant_id %>">
   <%= turbo_frame_tag "story_feed" do %>
     <% if @stories.any? %>
-      <%= render partial: "story", locals: { story: @stories.first } %>
+      <%= render partial: "story", locals: { story: @stories.first, dish: @stories.first.dish || @current_restaurant&.dishes&.first } %>
     <% else %>
       <div class="no-stories">
-        <p>No stories available</p>
-        <p><%= link_to 'Create your first dish and story', new_dish_path, style: 'color: #007bff;' %></p>
+        <p>No stories available for this restaurant</p>
+        <p><%= link_to 'Create your first story', new_story_path(restaurant_id: @current_restaurant_id), style: 'color: #007bff;' %></p>
       </div>
     <% end %>
   <% end %>
 </div>
 
+<script>
+  // Debug: Log stories array
+  console.log('Stories loaded:', <%= @stories.map(&:id).to_json %>);
+  console.log('Current restaurant ID:', <%= @current_restaurant_id.to_json %>);
+</script>
+
+<style>
+.restaurant-switcher {
+  position: fixed;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 8px 16px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.restaurant-list {
+  display: flex;
+  gap: 8px;
+}
+
+.restaurant-btn {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 6px 16px;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.restaurant-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.restaurant-btn.active {
+  background: #fff;
+  color: #000;
+}
+</style>

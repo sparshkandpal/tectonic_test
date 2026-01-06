@@ -15,10 +15,53 @@
   background: #000;
 }
 
+/* Story Header */
+.story-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  z-index: 15;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
+}
+
+.back-btn,
+.close-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+  transition: background 0.2s;
+}
+
+.back-btn:hover,
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.restaurant-name {
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
 /* Progress Bar */
 .progress-bar-container {
   position: absolute;
-  top: 0;
+  top: 50px;
   left: 0;
   right: 0;
   display: flex;
@@ -216,7 +259,45 @@
   padding: 20px;
   z-index: 10;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+}
+
+.bottom-actions-left {
+  display: flex;
+  gap: 10px;
+}
+
+.bottom-actions-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.modifications-info {
+  color: #fff;
+  font-size: 12px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.customize-btn,
+.add-extra-btn {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.customize-btn:hover,
+.add-extra-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .add-to-cart-btn {
@@ -229,6 +310,7 @@
   font-weight: bold;
   cursor: pointer;
   transition: transform 0.2s;
+  white-space: nowrap;
 }
 
 .add-to-cart-btn:hover {
@@ -240,6 +322,16 @@
 }
 
 /* Ingredient Card Modal */
+.ingredient-card-modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  pointer-events: none;
+}
+
 .ingredient-card-modal {
   position: fixed;
   top: 0;
@@ -251,13 +343,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 100;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s;
 }
 
-.ingredient-card-modal.active {
+.ingredient-card-modal-wrapper .ingredient-card-modal.active {
   opacity: 1;
   pointer-events: auto;
 }
@@ -377,13 +468,14 @@
   max-height: 80vh;
   overflow-y: auto;
   transform: translateY(100%);
-  transition: transform 0.3s;
-  z-index: 90;
+  transition: transform 0.3s ease-out;
+  z-index: 1000;
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .customization-panel.active {
   transform: translateY(0);
+  z-index: 1000;
 }
 
 .customization-panel-content {
@@ -419,6 +511,33 @@
 .customization-item {
   padding: 16px 0;
   border-bottom: 1px solid #eee;
+  transition: background 0.2s;
+}
+
+.customization-item.modified {
+  background: #fff3cd;
+  border-left: 3px solid #ffc107;
+  padding-left: 13px;
+}
+
+.remove-btn {
+  background: #dc3545;
+  color: #fff;
+  border: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  margin-left: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.remove-btn:hover {
+  background: #c82333;
 }
 
 .ingredient-info h4 {

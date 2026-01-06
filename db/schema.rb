@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2026_01_06_132752) do
+ActiveRecord::Schema.define(version: 2026_01_06_143803) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 2026_01_06_132752) do
     t.text "allergens"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "quantity", precision: 10, scale: 2, default: "0.0"
   end
 
   create_table "media_items", force: :cascade do |t|
@@ -119,11 +120,11 @@ ActiveRecord::Schema.define(version: 2026_01_06_132752) do
   end
 
   create_table "stories", force: :cascade do |t|
-    t.bigint "dish_id", null: false
     t.integer "position"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["dish_id"], name: "index_stories_on_dish_id"
+    t.bigint "restaurant_id", null: false
+    t.index ["restaurant_id"], name: "index_stories_on_restaurant_id"
   end
 
   create_table "substitutions", force: :cascade do |t|
@@ -145,7 +146,7 @@ ActiveRecord::Schema.define(version: 2026_01_06_132752) do
   add_foreign_key "hotspots", "ingredients"
   add_foreign_key "hotspots", "media_items"
   add_foreign_key "media_items", "stories"
-  add_foreign_key "stories", "dishes"
+  add_foreign_key "stories", "restaurants"
   add_foreign_key "substitutions", "ingredients"
   add_foreign_key "substitutions", "ingredients", column: "substitute_ingredient_id"
 end

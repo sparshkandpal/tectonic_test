@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'dish_ingredients/new'
+  get 'dish_ingredients/create'
+  get 'dish_ingredients/edit'
+  get 'dish_ingredients/update'
+  get 'dish_ingredients/destroy'
   root 'stories#index'
 
   resources :stories, only: [:index, :show, :new, :create, :edit, :update] do
@@ -28,6 +33,7 @@ Rails.application.routes.draw do
     member do
       get :customization_panel
     end
+    resources :dish_ingredients, only: [:new, :create, :edit, :update, :destroy]
   end
 
   namespace :api do

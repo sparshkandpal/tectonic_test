@@ -17,8 +17,14 @@
     <% end %>
 
     <div class="form-group">
-      <%= form.label :dish_id, "Dish" %>
-      <%= form.collection_select :dish_id, @dishes, :id, :name, { prompt: "Select a dish" }, { class: 'form-control' } %>
+      <%= form.label :restaurant_id, "Restaurant" %>
+      <%= form.collection_select :restaurant_id, @restaurants, :id, :name, { prompt: "Select a restaurant" }, { class: 'form-control' } %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :dish_id, "Dish (Optional - for customization)" %>
+      <%= form.collection_select :dish_id, Dish.all, :id, :name, { prompt: "Select a dish (optional)" }, { class: 'form-control' } %>
+      <small class="form-text">Optional: Link a dish for customization features</small>
     </div>
 
     <div class="form-group">
